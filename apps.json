@@ -1,0 +1,104 @@
+{
+  "tags": [
+    { "id": "video-app", "name": "VIDEO_APP" },
+    { "id": "embodied-interaction", "name": "Embodied_Interaction" },
+    { "id": "ai-realtime", "name": "AI Realtime" },
+    { "id": "creative-code", "name": "Creative Code" },
+    { "id": "llm", "name": "LLM" }
+  ],
+  "nodes": [
+    {
+      "id": "alwatchedover-machines",
+      "name": "All Watched Over by Machines of Loving Grace",
+      "shortName": "All Watched Over…",
+      "url": "https://marlonbarrios.github.io/alwatchedoverbymachinesoflovinggrace/",
+      "tagId": "video-app"
+    },
+    { "id": "we-came-to-rule", "name": "We Came to Rule", "url": "https://marlonbarrios.github.io/we_came_to_rule/", "tagId": "video-app" },
+    { "id": "she-has-good-genes", "name": "She Has Good Genes", "url": "https://marlonbarrios.github.io/she_has_good_genes/", "tagId": "video-app" },
+    { "id": "god-mode-palantir", "name": "God Mode (Palantir)", "url": "https://marlonbarrios.github.io/god_mode_palantir/", "tagId": "video-app" },
+    { "id": "barely-there", "name": "Barely There", "url": "https://marlonbarrios.github.io/barely_there/", "tagId": "video-app" },
+
+    { "id": "canonical01", "name": "Canonical01", "url": "https://marlonbarrios.github.io/canonical01/", "tagId": "embodied-interaction" },
+    { "id": "what-is-hand", "name": "What is Hand", "url": "https://marlonbarrios.github.io/ahandisfourrelationships/", "tagId": "embodied-interaction" },
+    { "id": "pulling-molecules", "name": "Pulling Molecules", "url": "https://marlonbarrios.github.io/pulling-molecules/", "tagId": "embodied-interaction" },
+    { "id": "cyberblue", "name": "Cyberblue", "url": "https://marlonbarrios.github.io/cyberblue/", "tagId": "embodied-interaction" },
+    { "id": "extraordinary-alien2", "name": "Extraordinary Alien 2", "url": "https://marlonbarrios.github.io/extraordinary_alien2/", "tagId": "embodied-interaction" },
+    { "id": "instrumental-proximities", "name": "Instrumental Proximities", "url": "https://marlonbarrios.github.io/instrumentalproximities/", "tagId": "embodied-interaction" },
+    { "id": "body-proximities", "name": "Body Proximities", "url": "https://marlonbarrios.github.io/body_proximities/", "tagId": "embodied-interaction" },
+    { "id": "impossible-simplicity", "name": "Impossible Simplicity", "url": "https://marlonbarrios.github.io/impossiblesimplicity/", "tagId": "embodied-interaction" },
+
+    {
+      "id": "bauhaus-time-travelers",
+      "name": "Bauhaus Time Travelers Daydream",
+      "shortName": "Bauhaus Time Travelers",
+      "url": "https://bauhaus-time-travelers-daydream.vercel.app/",
+      "tagId": "ai-realtime"
+    },
+    { "id": "looking-mr-parker", "name": "Looking for Mr. Parker", "url": "https://lookingformrparker.vercel.app/", "tagId": "ai-realtime" },
+
+    { "id": "my-house-your-house", "name": "My House is Your House", "url": "https://marlonbarrios.github.io/detroit/", "tagId": "creative-code" },
+    { "id": "time-instances", "name": "Time Instances", "url": "https://marlonbarrios.github.io/time_instances/", "tagId": "creative-code" },
+    { "id": "brainfuck-swarm", "name": "BrainFuck Swarm", "url": "https://marlonbarrios.github.io/brainfuck_swarm/", "tagId": "creative-code" },
+    { "id": "tangerine-dreams", "name": "Tangerine Dreams", "url": "https://marlonbarrios.github.io/tangerine_dreams2/", "tagId": "creative-code" },
+    {
+      "id": "pseudo-ouroboros",
+      "name": "Pseudo Ouroboros: The Genesis of Self Interest in Gradient Descent",
+      "shortName": "Pseudo Ouroboros",
+      "url": "https://marlonbarrios.github.io/pseudo_ouroboros/",
+      "tagId": "creative-code"
+    },
+    {
+      "id": "tonguezap",
+      "name": "TongueZap: The Hungry Chameleon Game",
+      "shortName": "TongueZap",
+      "url": "https://marlonbarrios.github.io/tonguezap/",
+      "tagId": "creative-code"
+    },
+    { "id": "proteans-video", "name": "Proteans", "url": "https://www.youtube.com/watch?v=iYiMgqiLDyU&t=122s", "tagId": "creative-code" },
+    {
+      "id": "proteus-temporal",
+      "name": "Proteus: Trns Temporal Dating Portal",
+      "shortName": "Proteus",
+      "url": "https://proteus-umber.vercel.app/",
+      "tagId": "creative-code"
+    },
+    {
+      "id": "rabbitholes-podcast",
+      "name": "rabbitHoles: Recursive Pathways to the Edges of Material Knowing and Back Speculative Podcast",
+      "shortName": "rabbit holes",
+      "url": "https://marlonbarrios.github.io/rabbitholes/",
+      "tagId": "creative-code"
+    },
+
+    { "id": "machine-forgetting", "name": "Machine Forgetting", "url": "https://machine-forgetting-textvoice-gestur.vercel.app/", "tagId": "llm" },
+    { "id": "i-am-not-saying", "name": "I Am Not Saying", "url": "https://i-am-not-saying.vercel.app/", "tagId": "llm" },
+    { "id": "semantic-tensegrities", "name": "Semantic Tensegrities", "url": "https://semantic-tensegrities.vercel.app/", "tagId": "llm" },
+    { "id": "elinmigrante", "name": "El Inmigrante", "url": "https://elinmigrante.vercel.app/", "tagId": "llm" },
+    { "id": "decolonial-ai", "name": "Decolonial AI", "url": "https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA", "tagId": "llm" },
+    { "id": "realtimetransformer", "name": "RealTime Transformer", "url": "https://realtimetransformer-r267.vercel.app/", "tagId": "llm" },
+
+    {
+      "id": "dark-enlightenment-rave-playlist",
+      "name": "Music Videos for Dark Enlightenment Rave",
+      "shortName": "Dark Enlightenment Rave",
+      "url": "https://www.youtube.com/playlist?list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3"
+    },
+    {
+      "id": "digressions-latent-space-album",
+      "name": "Digressions in Latent Space (The Music Album)",
+      "shortName": "Digressions in Latent Space",
+      "url": "https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space"
+    },
+
+    {
+      "id": "my-portfolio",
+      "name": "My Portfolio",
+      "url": "https://marlonbarrios.github.io/",
+      "linkOnly": true,
+      "linkTo": ["born-in-latent-space", "unstable-landscapes"]
+    },
+    { "id": "born-in-latent-space", "name": "born in latent space", "url": "https://marlonbarrios.github.io/born_in_latent_space/", "hubAll": true },
+    { "id": "unstable-landscapes", "name": "unstable landscapes", "url": "https://marlonbarrios.github.io/unstablelandscape/", "hubAll": true }
+  ]
+}
