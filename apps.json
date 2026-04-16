@@ -2,7 +2,7 @@
   "tags": [
     { "id": "video-app", "name": "VIDEO_APP" },
     { "id": "embodied-interaction", "name": "Embodied_Interaction" },
-    { "id": "ai-realtime", "name": "Real time AI" },
+    { "id": "ai-realtime", "name": "Real time Visual AI" },
     { "id": "llm", "name": "LLM" }
   ],
   "nodes": [

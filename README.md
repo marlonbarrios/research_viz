@@ -10,7 +10,7 @@ Static **D3 v7** force-directed graph: **`index.html`** loads **`apps.json`** (t
 |----|------|
 | `video-app` | VIDEO_APP |
 | `embodied-interaction` | Embodied_Interaction |
-| `ai-realtime` | Real time AI |
+| `ai-realtime` | Real time Visual AI |
 | `llm` | LLM |
 
 ---
@@ -42,7 +42,7 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 | `body-proximities` | Body Proximities | https://marlonbarrios.github.io/body_proximities/ |
 | `impossible-simplicity` | Impossible Simplicity | https://marlonbarrios.github.io/impossiblesimplicity/ |
 
-### Real time AI
+### Real time Visual AI
 
 | id | name | shortName | url |
 |----|------|-----------|-----|

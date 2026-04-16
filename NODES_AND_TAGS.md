@@ -8,7 +8,7 @@ Generated from `apps.json`.
 |----|------|
 | `video-app` | VIDEO_APP |
 | `embodied-interaction` | Embodied_Interaction |
-| `ai-realtime` | Real time AI |
+| `ai-realtime` | Real time Visual AI |
 | `llm` | LLM |
 
 ---
@@ -38,7 +38,7 @@ Generated from `apps.json`.
 | `body-proximities` | Body Proximities | https://marlonbarrios.github.io/body_proximities/ |
 | `impossible-simplicity` | Impossible Simplicity | https://marlonbarrios.github.io/impossiblesimplicity/ |
 
-### Real time AI (`ai-realtime`)
+### Real time Visual AI (`ai-realtime`)
 
 | id | name | shortName | url |
 |----|------|-------------|-----|
