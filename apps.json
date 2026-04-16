@@ -23,7 +23,12 @@
     { "id": "what-is-hand", "name": "What is Hand", "url": "https://marlonbarrios.github.io/ahandisfourrelationships/", "tagId": "embodied-interaction" },
     { "id": "pulling-molecules", "name": "Pulling Molecules", "url": "https://marlonbarrios.github.io/pulling-molecules/", "tagId": "embodied-interaction" },
     { "id": "cyberblue", "name": "Cyberblue", "url": "https://marlonbarrios.github.io/cyberblue/", "tagId": "embodied-interaction" },
-    { "id": "extraordinary-alien2", "name": "Extraordinary Alien 2", "url": "https://marlonbarrios.github.io/extraordinary_alien2/", "tagId": "embodied-interaction" },
+    {
+      "id": "extraordinary-alien2",
+      "name": "Extraordinary Alien",
+      "url": "https://marlonbarrios.github.io/extraordinary_alien2/",
+      "tagId": "embodied-interaction"
+    },
     { "id": "instrumental-proximities", "name": "Instrumental Proximities", "url": "https://marlonbarrios.github.io/instrumentalproximities/", "tagId": "embodied-interaction" },
     { "id": "body-proximities", "name": "Body Proximities", "url": "https://marlonbarrios.github.io/body_proximities/", "tagId": "embodied-interaction" },
     { "id": "impossible-simplicity", "name": "Impossible Simplicity", "url": "https://marlonbarrios.github.io/impossiblesimplicity/", "tagId": "embodied-interaction" },
@@ -71,8 +76,20 @@
       "tagId": "creative-code"
     },
 
-    { "id": "machine-forgetting", "name": "Machine Forgetting", "url": "https://machine-forgetting-textvoice-gestur.vercel.app/", "tagId": "llm" },
-    { "id": "i-am-not-saying", "name": "I Am Not Saying", "url": "https://i-am-not-saying.vercel.app/", "tagId": "llm" },
+    {
+      "id": "machine-forgetting",
+      "name": "Machine Forgetting",
+      "url": "https://machine-forgetting-textvoice-gestur.vercel.app/",
+      "tagId": "llm",
+      "linkTo": ["embodied-interaction"]
+    },
+    {
+      "id": "i-am-not-saying",
+      "name": "I Am Not Saying",
+      "url": "https://i-am-not-saying.vercel.app/",
+      "tagId": "llm",
+      "linkTo": ["embodied-interaction"]
+    },
     { "id": "semantic-tensegrities", "name": "Semantic Tensegrities", "url": "https://semantic-tensegrities.vercel.app/", "tagId": "llm" },
     { "id": "elinmigrante", "name": "El Inmigrante", "url": "https://elinmigrante.vercel.app/", "tagId": "llm" },
     { "id": "decolonial-ai", "name": "Decolonial AI", "url": "https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA", "tagId": "llm" },
@@ -82,7 +99,9 @@
       "id": "dark-enlightenment-rave-playlist",
       "name": "Music Videos for Dark Enlightenment Rave",
       "shortName": "Dark Enlightenment Rave",
-      "url": "https://www.youtube.com/playlist?list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3"
+      "url": "https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3",
+      "linkOnly": true,
+      "linkTo": ["unstable-landscapes"]
     },
     {
       "id": "digressions-latent-space-album",

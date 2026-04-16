@@ -79,7 +79,7 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 
 | id | name | shortName | notes | url |
 |----|------|-----------|-------|-----|
-| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | YouTube playlist | https://www.youtube.com/playlist?list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
+| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | `linkOnly`; links only to **unstable landscapes** | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
 | `digressions-latent-space-album` | Digressions in Latent Space (The Music Album) | Digressions in Latent Space | Bandcamp album | https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space |
 | `my-portfolio` | My Portfolio | — | `linkOnly`; links only to hubs below | https://marlonbarrios.github.io/ |
 | `born-in-latent-space` | born in latent space | — | `hubAll` | https://marlonbarrios.github.io/born_in_latent_space/ |

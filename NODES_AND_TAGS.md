@@ -77,7 +77,7 @@ Generated from `apps.json`.
 
 | id | name | shortName | notes | url |
 |----|------|-------------|-------|-----|
-| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | playlist | https://www.youtube.com/playlist?list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
+| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | `linkOnly`; `linkTo` → unstable-landscapes only | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
 | `digressions-latent-space-album` | Digressions in Latent Space (The Music Album) | Digressions in Latent Space | album | https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space |
 | `my-portfolio` | My Portfolio | — | `linkOnly`; `linkTo` → born-in-latent-space, unstable-landscapes | https://marlonbarrios.github.io/ |
 | `born-in-latent-space` | born in latent space | — | `hubAll` | https://marlonbarrios.github.io/born_in_latent_space/ |
