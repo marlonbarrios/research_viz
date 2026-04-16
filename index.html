@@ -41,6 +41,12 @@
       --node-anchor: #7a9ab8;
       --node-anchor-hover: #a8c4dc;
       --stroke-anchor: rgba(160, 200, 230, 0.45);
+      --node-hub: #e8842a;
+      --node-hub-hover: #ffb04a;
+      --stroke-hub: rgba(255, 170, 90, 0.55);
+      --node-portfolio: #166534;
+      --node-portfolio-hover: #22c55e;
+      --stroke-portfolio: rgba(130, 220, 170, 0.45);
       --hud-border: rgba(255, 255, 255, 0.08);
       --motion-border: rgba(255, 255, 255, 0.1);
       --kbd-bg: rgba(255, 255, 255, 0.06);
@@ -74,6 +80,12 @@
       --node-anchor: #4a6d8c;
       --node-anchor-hover: #3d5a73;
       --stroke-anchor: rgba(40, 75, 110, 0.38);
+      --node-hub: #c46812;
+      --node-hub-hover: #e88420;
+      --stroke-hub: rgba(180, 85, 15, 0.48);
+      --node-portfolio: #14532d;
+      --node-portfolio-hover: #166534;
+      --stroke-portfolio: rgba(20, 85, 45, 0.45);
       --hud-border: rgba(0, 0, 0, 0.1);
       --motion-border: rgba(0, 0, 0, 0.08);
       --kbd-bg: rgba(0, 0, 0, 0.05);
@@ -172,6 +184,11 @@
       cursor: pointer;
     }
 
+    .cell:focus,
+    .cell:focus-visible {
+      outline: none;
+    }
+
     .cell circle {
       stroke-width: 1.35px;
       transition: fill 0.12s ease, stroke 0.12s ease, fill-opacity 0.15s ease, stroke-opacity 0.15s ease;
@@ -207,14 +224,25 @@
       fill: var(--node-tag-hover);
     }
 
-    .cell[data-kind="anchor"] circle {
+    .cell[data-kind="anchor"]:not([data-hub-id]) circle {
       fill: var(--node-anchor);
       stroke: var(--stroke-anchor);
     }
 
-    .cell:hover[data-kind="anchor"] circle,
-    .cell:focus-within[data-kind="anchor"] circle {
+    .cell:hover[data-kind="anchor"]:not([data-hub-id]) circle,
+    .cell:focus-within[data-kind="anchor"]:not([data-hub-id]) circle {
       fill: var(--node-anchor-hover);
+    }
+
+    .cell[data-kind="anchor"][data-hub-id] circle {
+      fill: var(--node-hub);
+      stroke: var(--stroke-hub);
+      stroke-width: 1.65px;
+    }
+
+    .cell:hover[data-kind="anchor"][data-hub-id] circle,
+    .cell:focus-within[data-kind="anchor"][data-hub-id] circle {
+      fill: var(--node-hub-hover);
     }
 
     .cell:hover[data-kind="app"] circle,
@@ -230,6 +258,30 @@
     .cell:hover[data-kind="repo"] circle,
     .cell:focus-within[data-kind="repo"] circle {
       fill: var(--node-repo-hover);
+    }
+
+    .cell[data-id="proteus-temporal"] circle,
+    .cell[data-id="proteans-video"] circle {
+      fill: var(--node-anchor);
+      stroke: var(--stroke-anchor);
+    }
+
+    .cell[data-id="my-portfolio"] circle {
+      fill: var(--node-portfolio);
+      stroke: var(--stroke-portfolio);
+      stroke-width: 1.65px;
+    }
+
+    .cell:hover[data-id="proteus-temporal"] circle,
+    .cell:focus-within[data-id="proteus-temporal"] circle,
+    .cell:hover[data-id="proteans-video"] circle,
+    .cell:focus-within[data-id="proteans-video"] circle {
+      fill: var(--node-anchor-hover);
+    }
+
+    .cell:hover[data-id="my-portfolio"] circle,
+    .cell:focus-within[data-id="my-portfolio"] circle {
+      fill: var(--node-portfolio-hover);
     }
 
     .cell text {
@@ -674,6 +726,26 @@
         }
       }
 
+      const llmMembers = byTag.get("llm");
+      if (llmMembers && llmMembers.length >= 2) {
+        const ids = llmMembers.map((m) => m.id);
+        for (let i = 0; i < ids.length; i++) {
+          for (let j = i + 1; j < ids.length; j++) {
+            addLinkDeduped(links, seen, ids[i], ids[j]);
+          }
+        }
+      }
+
+      const tonguezapNode = nodes.find((d) => d.id === "tonguezap");
+      if (tonguezapNode) {
+        const embTagId = "embodied-interaction";
+        if (tagIds.has(embTagId)) addLinkDeduped(links, seen, "tonguezap", embTagId);
+        const embodiedMembers = byTag.get(embTagId);
+        if (embodiedMembers && embodiedMembers.length) {
+          for (const m of embodiedMembers) addLinkDeduped(links, seen, "tonguezap", m.id);
+        }
+      }
+
       const tagIdList = nodes.filter((d) => d.kind === "tag").map((d) => d.id);
       for (let i = 0; i < tagIdList.length; i++) {
         addLinkDeduped(links, seen, tagIdList[i], tagIdList[(i + 1) % tagIdList.length]);
@@ -687,9 +759,9 @@
       for (let i = 0; i < uids.length; i++) {
         addLinkDeduped(links, seen, uids[i], uids[(i + 1) % uids.length]);
       }
-      if (uids.length >= 2 && tagIds.has("creative-code") && tagIds.has("video-app")) {
+      if (uids.length >= 2 && tagIds.has("video-app") && tagIds.has("embodied-interaction")) {
         addLinkDeduped(links, seen, uids[0], "video-app");
-        addLinkDeduped(links, seen, uids[1], "creative-code");
+        addLinkDeduped(links, seen, uids[1], "embodied-interaction");
       } else if (uids.length === 1 && tagIdList.length) {
         addLinkDeduped(links, seen, uids[0], tagIdList[0]);
       }
@@ -780,7 +852,9 @@
         .data(nodes)
         .join("g")
         .attr("class", "cell")
+        .attr("data-id", (d) => d.id)
         .attr("data-kind", (d) => d.kind)
+        .attr("data-hub-id", (d) => (d.hubAll ? d.id : null))
         .attr("tabindex", 0);
 
       nodeCell
