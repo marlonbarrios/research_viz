@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marlon Barrios Solano's Research Creation Network</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script>
+    (function () {
+      try {
+        var k = "networkviz-theme";
+        var s = localStorage.getItem(k);
+        document.documentElement.setAttribute("data-theme", s === "dark" ? "dark" : "light");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #141416;
+      --panel: rgba(22, 22, 26, 0.9);
+      --text: #e8eaed;
+      --muted: #8b9099;
+      --link: rgba(210, 215, 222, 0.22);
+      --label-dim: rgba(232, 234, 237, 0.38);
+      --label-stroke: rgba(10, 10, 12, 0.92);
+      --link-related: rgba(228, 234, 245, 0.62);
+      --node-app: #d8dee6;
+      --node-app-hover: #ffffff;
+      --node-video: #6fb584;
+      --node-video-hover: #8fd4a4;
+      --node-repo: #4f555c;
+      --node-repo-hover: #6a717a;
+      --stroke-app: rgba(255, 255, 255, 0.12);
+      --stroke-video: rgba(111, 181, 132, 0.45);
+      --stroke-repo: rgba(0, 0, 0, 0.35);
+      --node-tag: #b89a3e;
+      --node-tag-hover: #d4b84a;
+      --stroke-tag: rgba(255, 220, 140, 0.4);
+      --node-anchor: #7a9ab8;
+      --node-anchor-hover: #a8c4dc;
+      --stroke-anchor: rgba(160, 200, 230, 0.45);
+      --node-hub: #e8842a;
+      --node-hub-hover: #ffb04a;
+      --stroke-hub: rgba(255, 170, 90, 0.55);
+      --node-portfolio: #166534;
+      --node-portfolio-hover: #22c55e;
+      --stroke-portfolio: rgba(130, 220, 170, 0.45);
+      --hud-border: rgba(255, 255, 255, 0.08);
+      --motion-border: rgba(255, 255, 255, 0.1);
+      --kbd-bg: rgba(255, 255, 255, 0.06);
+      --kbd-border: rgba(255, 255, 255, 0.12);
+      --accent: #6fb584;
+      --toggle-shadow: rgba(0, 0, 0, 0.35);
+      --related-glow: rgba(255, 255, 255, 0.3);
+    }
+
+    html[data-theme="light"] {
+      --bg: #e8ecf2;
+      --panel: rgba(255, 255, 255, 0.94);
+      --text: #1a1f28;
+      --muted: #556070;
+      --link: rgba(35, 48, 68, 0.22);
+      --label-dim: rgba(26, 31, 40, 0.62);
+      --label-stroke: rgba(255, 255, 255, 0.92);
+      --link-related: rgba(40, 55, 80, 0.5);
+      --node-app: #4a5d78;
+      --node-app-hover: #35465c;
+      --node-video: #2d8a52;
+      --node-video-hover: #236d42;
+      --node-repo: #5c636d;
+      --node-repo-hover: #434a54;
+      --stroke-app: rgba(0, 0, 0, 0.14);
+      --stroke-video: rgba(35, 110, 65, 0.45);
+      --stroke-repo: rgba(0, 0, 0, 0.22);
+      --node-tag: #9a7b2d;
+      --node-tag-hover: #7a6120;
+      --stroke-tag: rgba(100, 75, 20, 0.35);
+      --node-anchor: #4a6d8c;
+      --node-anchor-hover: #3d5a73;
+      --stroke-anchor: rgba(40, 75, 110, 0.38);
+      --node-hub: #c46812;
+      --node-hub-hover: #e88420;
+      --stroke-hub: rgba(180, 85, 15, 0.48);
+      --node-portfolio: #14532d;
+      --node-portfolio-hover: #166534;
+      --stroke-portfolio: rgba(20, 85, 45, 0.45);
+      --hud-border: rgba(0, 0, 0, 0.1);
+      --motion-border: rgba(0, 0, 0, 0.08);
+      --kbd-bg: rgba(0, 0, 0, 0.05);
+      --kbd-border: rgba(0, 0, 0, 0.12);
+      --accent: #2d8a52;
+      --toggle-shadow: rgba(0, 0, 0, 0.12);
+      --related-glow: rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Optional: add background.jpg or background.png next to index.html */
+    body.has-bg-image {
+      background-color: var(--bg);
+      background-image: url("background.jpg"), url("background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    body.has-bg-image::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(15, 20, 25, 0.25), rgba(15, 20, 25, 0.72));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    html[data-theme="light"] body.has-bg-image::before {
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.2),
+        rgba(232, 236, 242, 0.78)
+      );
+    }
+
+    body.has-bg-image #wrap,
+    body.has-bg-image #hud {
+      position: relative;
+      z-index: 1;
+    }
+
+    #wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+
+    svg:active {
+      cursor: grabbing;
+    }
+
+    .links {
+      pointer-events: none;
+    }
+
+    .links line {
+      stroke: var(--link);
+      stroke-width: 1px;
+      transition: opacity 0.15s ease, stroke 0.12s ease, stroke-width 0.12s ease;
+    }
+
+    .links line.related {
+      stroke: var(--link-related);
+      stroke-width: 1.85px;
+    }
+
+    body.viz-links-hidden .links line {
+      opacity: 0;
+    }
+
+    body.viz-links-hidden .links line.related {
+      opacity: 0;
+    }
+
+    .cell {
+      cursor: pointer;
+    }
+
+    .cell:focus,
+    .cell:focus-visible {
+      outline: none;
+    }
+
+    .cell circle {
+      stroke-width: 1.35px;
+      transition: fill 0.12s ease, stroke 0.12s ease, fill-opacity 0.15s ease, stroke-opacity 0.15s ease;
+    }
+
+    body.viz-circles-hidden .cell circle {
+      fill: transparent !important;
+      stroke: transparent !important;
+    }
+
+    .cell[data-kind="app"] circle {
+      fill: var(--node-app);
+      stroke: var(--stroke-app);
+    }
+
+    .cell[data-kind="video"] circle {
+      fill: var(--node-video);
+      stroke: var(--stroke-video);
+    }
+
+    .cell[data-kind="repo"] circle {
+      fill: var(--node-repo);
+      stroke: var(--stroke-repo);
+    }
+
+    .cell[data-kind="tag"] circle {
+      fill: var(--node-tag);
+      stroke: var(--stroke-tag);
+    }
+
+    .cell:hover[data-kind="tag"] circle,
+    .cell:focus-within[data-kind="tag"] circle {
+      fill: var(--node-tag-hover);
+    }
+
+    .cell[data-kind="anchor"]:not([data-hub-id]) circle {
+      fill: var(--node-anchor);
+      stroke: var(--stroke-anchor);
+    }
+
+    .cell:hover[data-kind="anchor"]:not([data-hub-id]) circle,
+    .cell:focus-within[data-kind="anchor"]:not([data-hub-id]) circle {
+      fill: var(--node-anchor-hover);
+    }
+
+    .cell[data-kind="anchor"][data-hub-id] circle {
+      fill: var(--node-hub);
+      stroke: var(--stroke-hub);
+      stroke-width: 1.65px;
+    }
+
+    .cell:hover[data-kind="anchor"][data-hub-id] circle,
+    .cell:focus-within[data-kind="anchor"][data-hub-id] circle {
+      fill: var(--node-hub-hover);
+    }
+
+    .cell:hover[data-kind="app"] circle,
+    .cell:focus-within[data-kind="app"] circle {
+      fill: var(--node-app-hover);
+    }
+
+    .cell:hover[data-kind="video"] circle,
+    .cell:focus-within[data-kind="video"] circle {
+      fill: var(--node-video-hover);
+    }
+
+    .cell:hover[data-kind="repo"] circle,
+    .cell:focus-within[data-kind="repo"] circle {
+      fill: var(--node-repo-hover);
+    }
+
+    .cell[data-id="proteus-temporal"] circle,
+    .cell[data-id="proteans-video"] circle {
+      fill: var(--node-anchor);
+      stroke: var(--stroke-anchor);
+    }
+
+    .cell[data-id="my-portfolio"] circle {
+      fill: var(--node-portfolio);
+      stroke: var(--stroke-portfolio);
+      stroke-width: 1.65px;
+    }
+
+    .cell:hover[data-id="proteus-temporal"] circle,
+    .cell:focus-within[data-id="proteus-temporal"] circle,
+    .cell:hover[data-id="proteans-video"] circle,
+    .cell:focus-within[data-id="proteans-video"] circle {
+      fill: var(--node-anchor-hover);
+    }
+
+    .cell:hover[data-id="my-portfolio"] circle,
+    .cell:focus-within[data-id="my-portfolio"] circle {
+      fill: var(--node-portfolio-hover);
+    }
+
+    .cell text {
+      fill: var(--label-dim);
+      font-size: 12px;
+      font-weight: 600;
+      paint-order: stroke fill;
+      stroke: var(--label-stroke);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+      pointer-events: none;
+      transition: fill 0.12s ease, opacity 0.15s ease;
+    }
+
+    body.viz-labels-hidden .cell text {
+      opacity: 0;
+    }
+
+    .cell:hover text,
+    .cell:focus-within text {
+      fill: var(--text);
+    }
+
+    .cell.related circle {
+      filter: brightness(1.22) drop-shadow(0 0 8px var(--related-glow));
+    }
+
+    .cell.related text {
+      fill: var(--text);
+      opacity: 1 !important;
+    }
+
+    #hud {
+      position: absolute;
+      right: 16px;
+      bottom: max(16px, env(safe-area-inset-bottom, 0px));
+      left: auto;
+      top: auto;
+      max-width: min(420px, calc(100% - 32px));
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--panel);
+      border: 1px solid var(--hud-border);
+      backdrop-filter: blur(8px);
+      z-index: 3;
+    }
+
+    #hud h1 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      max-width: 22em;
+    }
+
+    #hud .hud-updated {
+      margin: 0 0 8px;
+      font-size: 11px;
+      line-height: 1.35;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    #hud p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .load-status:empty {
+      display: none;
+    }
+
+    .load-status {
+      margin: 0 0 8px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #e8a598;
+    }
+
+    #motion-controls {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--motion-border);
+    }
+
+    #motion-controls[hidden] {
+      display: none !important;
+    }
+
+    #motion-controls .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 5px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    #motion-controls .slider-row:first-of-type {
+      margin-top: 0;
+    }
+
+    #motion-controls .slider-row label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 9px;
+    }
+
+    #motion-controls .slider-row label span.val {
+      font-weight: 500;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-size: 8px;
+    }
+
+    #motion-controls .slider-row input[type="range"] {
+      width: 100%;
+      max-width: 280px;
+      height: 14px;
+      accent-color: var(--accent);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      left: 12px;
+      bottom: max(12px, env(safe-area-inset-bottom, 0px));
+      z-index: 4;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      margin: 0;
+      border-radius: 50%;
+      border: 1px solid var(--hud-border);
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      box-shadow: 0 2px 14px var(--toggle-shadow);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+    }
+
+    .theme-toggle:hover {
+      filter: brightness(1.06);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle svg {
+      grid-area: 1 / 1;
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .theme-toggle .theme-icon-sun {
+      display: block;
+    }
+
+    .theme-toggle .theme-icon-moon {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-toggle .theme-icon-sun {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-toggle .theme-icon-moon {
+      display: block;
+    }
+
+    .key-hint {
+      margin-top: 8px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .key-hint kbd {
+      display: inline-block;
+      padding: 0.08em 0.35em;
+      margin: 0 0.1em;
+      font-size: 10px;
+      font-family: ui-monospace, monospace;
+      color: var(--text);
+      background: var(--kbd-bg);
+      border: 1px solid var(--kbd-border);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="hud">
+      <h1>Marlon Barrios Solano's Research Creation Network</h1>
+      <p id="hud-updated" class="hud-updated" aria-live="polite"></p>
+      <p id="load-status" class="load-status" role="status" aria-live="polite"></p>
+      <p class="key-hint" id="key-hint" aria-live="polite">
+        <kbd>C</kbd> circles · <kbd>T</kbd> text · <kbd>L</kbd> links — toggles work after the graph loads (not while a slider is focused).
+      </p>
+
+      <div id="motion-controls" hidden>
+        <div class="slider-row">
+          <label for="animate">Animate <span class="val" id="animate-val"></span></label>
+          <input type="range" id="animate" min="0" max="100" value="100" />
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Switch to light mode"
+      title="Theme: dark"
+    >
+      <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1-1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 1-1 1ZM5.64 6.64a1 1 0 0 1 1.41 0l.71.71a1 1 0 0 1-1.41 1.41l-.71-.71a1 1 0 0 1 0-1.41Zm12.02 12.02a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41ZM3 13a1 1 0 0 1 0-2h1a1 1 0 1 1 0 2H3Zm17 0a1 1 0 0 1 0-2h1a1 1 0 1 1 0 2h-1ZM6.64 18.36a1 1 0 0 1 0-1.41l.71-.71a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1-1.41 0Zm12.02-12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0Z"
+        />
+      </svg>
+      <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M21 14.5A8.5 8.5 0 0 1 9.5 3a8.5 8.5 0 1 0 11.5 11.5Z"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    (function initOpenedStamp() {
+      const el = document.getElementById("hud-updated");
+      if (!el) return;
+      const d = new Date();
+      el.textContent =
+        "Updated · " +
+        d.toLocaleDateString(undefined, {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+    })();
+
+    (function initThemeToggle() {
+      const btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      const key = "networkviz-theme";
+      function syncButton() {
+        const t = document.documentElement.getAttribute("data-theme") || "light";
+        const light = t === "light";
+        btn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+        btn.setAttribute("title", light ? "Theme: light" : "Theme: dark");
+      }
+      btn.addEventListener("click", () => {
+        const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem(key, next);
+        } catch (e) {
+          /* ignore */
+        }
+        syncButton();
+      });
+      syncButton();
+    })();
+
+    function probeImage(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src + "?t=" + Date.now();
+      });
+    }
+
+    async function hasBackgroundImage() {
+      if (await probeImage("background.jpg")) return true;
+      if (await probeImage("background.png")) return true;
+      return false;
+    }
+
+    function inferKind(url) {
+      const u = String(url).toLowerCase();
+      if (u.includes("youtube.com") || u.includes("youtu.be")) return "video";
+      if (/^https?:\/\/(www\.)?github\.com\//i.test(String(url))) return "repo";
+      return "app";
+    }
+
+    function hostKey(url) {
+      try {
+        return new URL(url).hostname.replace(/^www\./, "");
+      } catch {
+        return "";
+      }
+    }
+
+    async function loadGraphData() {
+      const res = await fetch("apps.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("Could not load apps.json");
+      const data = await res.json();
+      const rawNodes = Array.isArray(data.nodes) ? data.nodes : [];
+      const tags = Array.isArray(data.tags) ? data.tags : [];
+
+      if (tags.length) {
+        const tagNodes = tags
+          .filter((t) => t && t.id && t.name)
+          .map((t) => ({
+            id: String(t.id),
+            name: String(t.name),
+            url: "",
+            kind: "tag",
+            tagId: null,
+            linkTo: [],
+            linkOnly: false,
+            shortName: "",
+          }));
+        const leafNodes = rawNodes
+          .filter((d) => d && d.id && d.name && (d.url || d.hubAll))
+          .map((d) => ({
+            id: String(d.id),
+            name: String(d.name),
+            shortName:
+              d.shortName != null && String(d.shortName).trim() !== ""
+                ? String(d.shortName).trim()
+                : "",
+            url: d.url ? String(d.url).trim() : "",
+            hubAll: Boolean(d.hubAll),
+            tagId: d.tagId != null && String(d.tagId).trim() !== "" ? String(d.tagId) : null,
+            kind: d.hubAll ? "anchor" : inferKind(d.url),
+            linkTo: Array.isArray(d.linkTo) ? d.linkTo.map((x) => String(x)) : [],
+            linkOnly: Boolean(d.linkOnly),
+          }));
+        return [...tagNodes, ...leafNodes];
+      }
+
+      return rawNodes
+        .filter((d) => d && d.id && d.name && (d.url || d.hubAll))
+        .map((d) => ({
+          id: String(d.id),
+          name: String(d.name),
+          shortName:
+            d.shortName != null && String(d.shortName).trim() !== ""
+              ? String(d.shortName).trim()
+              : "",
+          url: d.url ? String(d.url).trim() : "",
+          hubAll: Boolean(d.hubAll),
+          tagId: null,
+          kind: d.hubAll ? "anchor" : inferKind(d.url),
+          linkTo: Array.isArray(d.linkTo) ? d.linkTo.map((x) => String(x)) : [],
+          linkOnly: Boolean(d.linkOnly),
+        }));
+    }
+
+    function addLinkDeduped(links, seen, a, b) {
+      if (!a || !b || a === b) return;
+      const k = a < b ? `${a}|${b}` : `${b}|${a}`;
+      if (seen.has(k)) return;
+      seen.add(k);
+      links.push({ source: a, target: b });
+    }
+
+    function addExplicitLinkTos(nodes, links, seen) {
+      const ids = new Set(nodes.map((n) => n.id));
+      for (const n of nodes) {
+        if (!Array.isArray(n.linkTo) || !n.linkTo.length) continue;
+        for (const other of n.linkTo) {
+          if (!ids.has(other)) continue;
+          addLinkDeduped(links, seen, n.id, other);
+        }
+      }
+    }
+
+    function addHubAllLinks(nodes, links, seen) {
+      const hubs = nodes.filter((d) => d.hubAll);
+      if (!hubs.length) return;
+      const others = nodes.filter((d) => !d.hubAll && !d.linkOnly);
+      for (const h of hubs) {
+        for (const o of others) addLinkDeduped(links, seen, h.id, o.id);
+      }
+      for (let i = 0; i < hubs.length; i++) {
+        for (let j = i + 1; j < hubs.length; j++) {
+          addLinkDeduped(links, seen, hubs[i].id, hubs[j].id);
+        }
+      }
+    }
+
+    function autoLinksLegacy(nodes) {
+      const ringNodes = nodes.filter((d) => !d.linkOnly);
+      const ids = ringNodes.map((d) => d.id);
+      const n = ids.length;
+      const seen = new Set();
+      const links = [];
+      for (let i = 0; i < n; i++) {
+        addLinkDeduped(links, seen, ids[i], ids[(i + 1) % n]);
+        addLinkDeduped(links, seen, ids[i], ids[(i + 2) % n]);
+        addLinkDeduped(links, seen, ids[i], ids[(i + 5) % n]);
+        addLinkDeduped(links, seen, ids[i], ids[(i + 11) % n]);
+      }
+      const byHost = d3.group(
+        nodes.filter((d) => d.url && !d.linkOnly),
+        (d) => hostKey(d.url)
+      );
+      for (const [, arr] of byHost) {
+        if (arr.length < 2) continue;
+        for (let i = 0; i < arr.length; i++) {
+          addLinkDeduped(links, seen, arr[i].id, arr[(i + 1) % arr.length].id);
+        }
+      }
+      addExplicitLinkTos(nodes, links, seen);
+      addHubAllLinks(nodes, links, seen);
+      return links;
+    }
+
+    function autoLinksWithTags(nodes) {
+      const seen = new Set();
+      const links = [];
+      const tagIds = new Set(nodes.filter((d) => d.kind === "tag").map((d) => d.id));
+
+      const byTag = d3.group(
+        nodes.filter((d) => d.tagId && tagIds.has(d.tagId)),
+        (d) => d.tagId
+      );
+
+      for (const [tid, members] of byTag) {
+        for (const m of members) addLinkDeduped(links, seen, tid, m.id);
+        const ids = members.map((m) => m.id);
+        const len = ids.length;
+        for (let i = 0; i < len; i++) {
+          addLinkDeduped(links, seen, ids[i], ids[(i + 1) % len]);
+          if (len > 3) addLinkDeduped(links, seen, ids[i], ids[(i + 2) % len]);
+        }
+      }
+
+      const llmMembers = byTag.get("llm");
+      if (llmMembers && llmMembers.length >= 2) {
+        const ids = llmMembers.map((m) => m.id);
+        for (let i = 0; i < ids.length; i++) {
+          for (let j = i + 1; j < ids.length; j++) {
+            addLinkDeduped(links, seen, ids[i], ids[j]);
+          }
+        }
+      }
+
+      const tonguezapNode = nodes.find((d) => d.id === "tonguezap");
+      if (tonguezapNode) {
+        const embTagId = "embodied-interaction";
+        if (tagIds.has(embTagId)) addLinkDeduped(links, seen, "tonguezap", embTagId);
+        const embodiedMembers = byTag.get(embTagId);
+        if (embodiedMembers && embodiedMembers.length) {
+          for (const m of embodiedMembers) addLinkDeduped(links, seen, "tonguezap", m.id);
+        }
+      }
+
+      const tagIdList = nodes.filter((d) => d.kind === "tag").map((d) => d.id);
+      for (let i = 0; i < tagIdList.length; i++) {
+        addLinkDeduped(links, seen, tagIdList[i], tagIdList[(i + 1) % tagIdList.length]);
+      }
+
+      const ungrouped = nodes.filter(
+        (d) =>
+          d.url && !d.tagId && d.kind !== "tag" && !d.hubAll && !d.linkOnly
+      );
+      const uids = ungrouped.map((d) => d.id);
+      for (let i = 0; i < uids.length; i++) {
+        addLinkDeduped(links, seen, uids[i], uids[(i + 1) % uids.length]);
+      }
+      if (uids.length >= 2 && tagIds.has("video-app") && tagIds.has("embodied-interaction")) {
+        addLinkDeduped(links, seen, uids[0], "video-app");
+        addLinkDeduped(links, seen, uids[1], "embodied-interaction");
+      } else if (uids.length === 1 && tagIdList.length) {
+        addLinkDeduped(links, seen, uids[0], tagIdList[0]);
+      }
+
+      const withUrl = nodes.filter((d) => d.url && !d.linkOnly);
+      const byHost = d3.group(withUrl, (d) => hostKey(d.url));
+      for (const [, arr] of byHost) {
+        if (!hostKey(arr[0].url) || arr.length < 2) continue;
+        for (let i = 0; i < arr.length; i++) {
+          addLinkDeduped(links, seen, arr[i].id, arr[(i + 1) % arr.length].id);
+        }
+      }
+
+      addExplicitLinkTos(nodes, links, seen);
+      addHubAllLinks(nodes, links, seen);
+      return links;
+    }
+
+    function autoLinks(nodes) {
+      if (nodes.some((d) => d.kind === "tag")) return autoLinksWithTags(nodes);
+      return autoLinksLegacy(nodes);
+    }
+
+    function baseRadius(kind) {
+      if (kind === "tag") return 14;
+      if (kind === "anchor") return 13;
+      if (kind === "video") return 6.25;
+      if (kind === "repo") return 9;
+      return 11.5;
+    }
+
+    function buildGraph(graphNodes) {
+      const links = autoLinks(graphNodes);
+      const degree = new Map(graphNodes.map((d) => [d.id, 0]));
+      for (const e of links) {
+        const s = typeof e.source === "object" ? e.source.id : e.source;
+        const t = typeof e.target === "object" ? e.target.id : e.target;
+        degree.set(s, (degree.get(s) || 0) + 1);
+        degree.set(t, (degree.get(t) || 0) + 1);
+      }
+
+      const nodes = graphNodes.map((d) => {
+        const deg = degree.get(d.id) || 0;
+        const br = baseRadius(d.kind);
+        const cap = d.kind === "tag" || d.kind === "anchor" ? 30 : 22;
+        const r = Math.min(cap, br + Math.sqrt(deg) * 2.15);
+        return { ...d, r };
+      });
+
+      return { nodes, links };
+    }
+
+    function run({ nodes, links }) {
+      const wrap = document.getElementById("wrap");
+      const width = () => wrap.clientWidth;
+      const height = () => wrap.clientHeight;
+
+      const svg = d3
+        .select("#wrap")
+        .append("svg")
+        .attr("role", "img")
+        .attr(
+          "aria-label",
+          "Marlon Barrios Solano's research creation network: interactive graph of projects and tags"
+        );
+
+      const g = svg.append("g");
+
+      const zoom = d3
+        .zoom()
+        .scaleExtent([0.35, 4])
+        .on("zoom", (event) => {
+          g.attr("transform", event.transform);
+        });
+
+      svg.call(zoom);
+
+      const linkLayer = g.append("g").attr("class", "links");
+      const nodeLayer = g.append("g").attr("class", "nodes");
+
+      const linkSel = linkLayer
+        .selectAll("line")
+        .data(links)
+        .join("line");
+
+      const nodeCell = nodeLayer
+        .selectAll("g.cell")
+        .data(nodes)
+        .join("g")
+        .attr("class", "cell")
+        .attr("data-id", (d) => d.id)
+        .attr("data-kind", (d) => d.kind)
+        .attr("data-hub-id", (d) => (d.hubAll ? d.id : null))
+        .attr("tabindex", 0);
+
+      nodeCell
+        .append("circle")
+        .attr("r", (d) => d.r)
+        .append("title")
+        .text((d) =>
+          d.url
+            ? `${d.name}\n${d.url}`
+            : d.kind === "tag"
+              ? `Tag: ${d.name}`
+              : `Hub (linked to all nodes): ${d.name}`
+        );
+
+      nodeCell
+        .append("text")
+        .text((d) => (d.shortName ? d.shortName : d.name))
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "alphabetic")
+        .attr("y", (d) => -d.r - 6);
+
+      nodeCell
+        .on("click", (event, d) => {
+          event.stopPropagation();
+          const u = d.url;
+          if (u) window.open(u, "_blank", "noopener,noreferrer");
+        })
+        .on("keydown", (event, d) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            const u = d.url;
+            if (u) window.open(u, "_blank", "noopener,noreferrer");
+          }
+        });
+
+      function linkEndpointId(end) {
+        return typeof end === "object" && end !== null ? end.id : end;
+      }
+
+      const adjacency = new Map();
+      nodes.forEach((n) => adjacency.set(n.id, new Set()));
+      for (const e of links) {
+        const s = linkEndpointId(e.source);
+        const t = linkEndpointId(e.target);
+        adjacency.get(s)?.add(t);
+        adjacency.get(t)?.add(s);
+      }
+
+      let hlMouse = null;
+      let hlFocus = null;
+      let mouseClearTimer = null;
+      const nodeLayerEl = nodeLayer.node();
+
+      function currentHighlightRoot() {
+        return hlFocus != null ? hlFocus : hlMouse;
+      }
+
+      function applyNeighborHighlight() {
+        const root = currentHighlightRoot();
+        nodeCell.classed("related", false);
+        linkSel.classed("related", false);
+        if (!root) return;
+        const nb = adjacency.get(root);
+        const cluster = new Set(nb ? [root, ...nb] : [root]);
+        nodeCell.classed("related", (d) => cluster.has(d.id));
+        linkSel.classed("related", (l) => {
+          const s = linkEndpointId(l.source);
+          const t = linkEndpointId(l.target);
+          return cluster.has(s) && cluster.has(t);
+        });
+      }
+
+      nodeCell
+        .on("mouseenter.hlint", (event, d) => {
+          if (mouseClearTimer) {
+            window.clearTimeout(mouseClearTimer);
+            mouseClearTimer = null;
+          }
+          hlMouse = d.id;
+          applyNeighborHighlight();
+        })
+        .on("mouseleave.hlint", (event) => {
+          const rt = event.relatedTarget;
+          if (rt && nodeLayerEl.contains(rt)) return;
+          mouseClearTimer = window.setTimeout(() => {
+            hlMouse = null;
+            mouseClearTimer = null;
+            applyNeighborHighlight();
+          }, 45);
+        })
+        .on("focusin.hlint", (event, d) => {
+          hlFocus = d.id;
+          applyNeighborHighlight();
+        })
+        .on("focusout.hlint", () => {
+          window.setTimeout(() => {
+            const ae = document.activeElement;
+            if (!ae || !nodeLayerEl.contains(ae)) hlFocus = null;
+            applyNeighborHighlight();
+          }, 0);
+        });
+
+      const linkForce = d3
+        .forceLink(links)
+        .id((d) => d.id)
+        .distance(60)
+        .strength(0.22);
+
+      const simulation = d3
+        .forceSimulation(nodes)
+        .force("link", linkForce)
+        .force("charge", d3.forceManyBody().strength(-660))
+        .force("center", d3.forceCenter(width() / 2, height() / 2))
+        .force(
+          "collide",
+          d3
+            .forceCollide()
+            .radius((d) => d.r + 12)
+            .iterations(2)
+        )
+        .on("tick", () => {
+          linkSel
+            .attr("x1", (d) => d.source.x)
+            .attr("y1", (d) => d.source.y)
+            .attr("x2", (d) => d.target.x)
+            .attr("y2", (d) => d.target.y);
+
+          nodeCell.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        });
+
+      let isDragging = false;
+      let ambientAlphaTarget = 0;
+
+      function driftToAlphaTarget(v) {
+        if (v <= 0) return 0;
+        const t = v / 100;
+        return t ** 0.58 * 0.26;
+      }
+
+      function elasticityToDecay(e) {
+        return 0.47 - (e / 100) * 0.34;
+      }
+
+      function elasticityToLinkStrength(e) {
+        return 0.11 + (e / 100) * 0.28;
+      }
+
+      function elasticityToLinkDistance(e) {
+        return 56 + (e / 100) * 22;
+      }
+
+      function elasticityToCharge(e) {
+        return -660 + (e / 100) * 200;
+      }
+
+      const FIXED_ELASTICITY = 0;
+
+      function applyMotionFromUi() {
+        const animate = +document.getElementById("animate").value;
+        ambientAlphaTarget = driftToAlphaTarget(animate);
+        simulation.velocityDecay(elasticityToDecay(FIXED_ELASTICITY));
+        linkForce.strength(elasticityToLinkStrength(FIXED_ELASTICITY));
+        linkForce.distance(elasticityToLinkDistance(FIXED_ELASTICITY));
+        simulation.force("charge", d3.forceManyBody().strength(elasticityToCharge(FIXED_ELASTICITY)));
+        const valEl = document.getElementById("animate-val");
+        if (valEl) valEl.textContent = animate === 0 ? "still" : `${animate}%`;
+        if (!isDragging) simulation.alphaTarget(ambientAlphaTarget);
+        if (animate <= 0) {
+          simulation.alphaTarget(0);
+          simulation.alpha(0);
+        } else {
+          const reheat = Math.min(1, 0.1 + ambientAlphaTarget * 18);
+          simulation.alpha(reheat).restart();
+        }
+      }
+
+      const motionPanel = document.getElementById("motion-controls");
+      motionPanel.hidden = false;
+      document.getElementById("animate").addEventListener("input", applyMotionFromUi);
+      applyMotionFromUi();
+
+      const drag = d3
+        .drag()
+        .on("start", (event, d) => {
+          isDragging = true;
+          event.sourceEvent.stopPropagation();
+          if (!event.active) simulation.alphaTarget(0.32).restart();
+          const [px, py] = d3.pointer(event, g.node());
+          d.fx = px;
+          d.fy = py;
+        })
+        .on("drag", (event, d) => {
+          const [px, py] = d3.pointer(event, g.node());
+          d.fx = px;
+          d.fy = py;
+        })
+        .on("end", (event, d) => {
+          isDragging = false;
+          if (!event.active) simulation.alphaTarget(ambientAlphaTarget);
+          d.fx = null;
+          d.fy = null;
+        });
+
+      nodeCell.call(drag);
+
+      function resize() {
+        svg.attr("width", width()).attr("height", height());
+        simulation.force("center", d3.forceCenter(width() / 2, height() / 2));
+        simulation.alpha(0.18).restart();
+      }
+
+      resize();
+      d3.select(window).on("resize.networkviz", resize);
+
+      svg.call(zoom.transform, d3.zoomIdentity);
+
+      const vizLayers = { circles: true, labels: true, links: true };
+
+      function isTypingTarget(el) {
+        if (!el || !el.tagName) return false;
+        const t = el.tagName.toLowerCase();
+        if (t === "input" || t === "textarea" || t === "select") return true;
+        return Boolean(el.isContentEditable);
+      }
+
+      function applyVizLayerClasses() {
+        document.body.classList.toggle("viz-circles-hidden", !vizLayers.circles);
+        document.body.classList.toggle("viz-labels-hidden", !vizLayers.labels);
+        document.body.classList.toggle("viz-links-hidden", !vizLayers.links);
+        const on = (v) => (v ? "on" : "off");
+        const elHint = document.getElementById("key-hint");
+        if (elHint) {
+          elHint.innerHTML = `<kbd>C</kbd> circles ${on(vizLayers.circles)} · <kbd>T</kbd> text ${on(
+            vizLayers.labels
+          )} · <kbd>L</kbd> links ${on(vizLayers.links)}`;
+        }
+      }
+
+      function onVizKeydown(e) {
+        if (isTypingTarget(e.target)) return;
+        const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        if (k === "c") {
+          vizLayers.circles = !vizLayers.circles;
+          e.preventDefault();
+        } else if (k === "t") {
+          vizLayers.labels = !vizLayers.labels;
+          e.preventDefault();
+        } else if (k === "l") {
+          vizLayers.links = !vizLayers.links;
+          e.preventDefault();
+        } else {
+          return;
+        }
+        applyVizLayerClasses();
+      }
+
+      window.addEventListener("keydown", onVizKeydown);
+      applyVizLayerClasses();
+    }
+
+    (async () => {
+      const loadStatus = document.getElementById("load-status");
+      try {
+        if (await hasBackgroundImage()) document.body.classList.add("has-bg-image");
+      } catch (_) {
+        /* ignore */
+      }
+
+      try {
+        const graphNodes = await loadGraphData();
+        if (!graphNodes.length) {
+          if (loadStatus)
+            loadStatus.textContent =
+              "No nodes in apps.json yet. Add objects with id, name, and url (or hubAll).";
+          return;
+        }
+        if (loadStatus) loadStatus.textContent = "";
+        run(buildGraph(graphNodes));
+      } catch (e) {
+        if (loadStatus) loadStatus.textContent = String(e && e.message ? e.message : e);
+      }
+    })();
+  </script>
+</body>
+</html>
