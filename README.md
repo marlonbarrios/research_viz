@@ -1,6 +1,8 @@
 # Research Creation Network
 
-Static **D3 v7** force-directed graph: **`index.html`** loads **`apps.json`** (tags + nodes). Serve the folder over HTTP so `fetch("apps.json")` succeeds (for example `npx serve .` or any static server).
+**Live app:** [https://marlonbarrios.github.io/research_viz/](https://marlonbarrios.github.io/research_viz/)
+
+Static **D3 v7** force-directed graph: **`index.html`** loads **`apps.json`** (tags + nodes). To run locally, serve the folder over HTTP so `fetch("apps.json")` succeeds (for example `npx serve .` or any static server).
 
 **Graph layout** — The simulation uses link distance, many-body repulsion, and generous collision padding so the graph starts **loose** and nodes keep clear space. Labels sit **above** each circle by default. **Light** / **dark** theme is toggled only with the **sun / moon** control in the **lower left** (saved in `localStorage`). **Zoom** is mouse or trackpad on the chart.
 
