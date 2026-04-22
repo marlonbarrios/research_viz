@@ -2,7 +2,13 @@
 
 Static **D3 v7** force-directed graph: **`index.html`** loads **`apps.json`** (tags + nodes). Serve the folder over HTTP so `fetch("apps.json")` succeeds (for example `npx serve .` or any static server).
 
-**Graph layout** — The simulation uses link distance, many-body repulsion, and collision padding so node labels (drawn above each circle) stay easier to read. **Animate** controls ongoing motion (0% = still). **Light/dark** theme is in the corner; **zoom** is mouse or trackpad on the chart. After load, **C** / **T** / **L** toggle circles, text labels, and edge lines.
+**Graph layout** — The simulation uses link distance, many-body repulsion, and generous collision padding so the graph starts **loose** and nodes keep clear space. Labels sit **above** each circle by default. **Light** / **dark** theme is toggled only with the **sun / moon** control in the **lower left** (saved in `localStorage`). **Zoom** is mouse or trackpad on the chart.
+
+**Lively** (in the side panel) is a **checkbox**: off for calmer drift; on for livelier motion with **weaker** springs, **stronger** repulsion, and longer edges so the layout does not collapse into a tight clump.
+
+**Keyboard** — After load, **C** hides or shows **circles**, **T** toggles **labels**, **L** toggles **links**. When circles are **off**, node names move to the **center** of each node; when circles are **on** again, labels return **above** the circles. (Toggles do not apply while an input is focused.)
+
+**Nodes without a `url`** (e.g. the **Video Playlists** hub) do not open a link on click; hover **fill** does not brighten for those nodes, but neighbor highlight on hover still works.
 
 ---
 
@@ -10,18 +16,18 @@ Static **D3 v7** force-directed graph: **`index.html`** loads **`apps.json`** (t
 
 | id | name |
 |----|------|
-| `video-app` | VIDEO_APP |
+| `video-app` | AI Videos Played on App |
 | `embodied-interaction` | Embodied_Interaction |
 | `ai-realtime` | Real time Visual AI |
-| `llm` | LLM |
+| `llm` | Real Time LLMs |
 
 ---
 
 ## All nodes
 
-Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws when set; **`name`** is the full label (e.g. tooltips). **`hubAll`** hubs link broadly; **`linkOnly`** / **`linkTo`** restrict custom edges.
+Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws when set; **`name`** is the full label (e.g. tooltips). **`hubAll`** hubs link broadly to projects; **`hubLinkTo`** (optional) limits a hub to only those node ids while it still links to other hubs. **`hubConnectOnlyPeers`** (optional) lists which other **hubs** this hub links to (omit for full hub-to-hub mesh). **`linkOnly`** / **`linkTo`** restrict custom edges.
 
-### VIDEO_APP
+### AI Videos Played on App
 
 | id | name | shortName | url |
 |----|------|-----------|-----|
@@ -51,24 +57,24 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 | `bauhaus-time-travelers` | Bauhaus Time Travelers Daydream | Bauhaus Time Travelers | https://bauhaus-time-travelers-daydream.vercel.app/ |
 | `looking-mr-parker` | Looking for Mr. Parker | — | https://lookingformrparker.vercel.app/ |
 
-### LLM
+### Real Time LLMs
 
 | id | name | url |
 |----|------|-----|
-| `machine-forgetting` | Machine Forgetting | https://machine-forgetting-textvoice-gestur.vercel.app/ |
-| `i-am-not-saying` | I Am Not Saying | https://i-am-not-saying.vercel.app/ |
-| `alan-ai` | Alan-AI | https://alan-ai-one.vercel.app/ |
+| `machine-forgetting` | Machine Forgetting | https://github.com/marlonbarrios/machine_forgetting_textvoice_gesture_traccking |
+| `i-am-not-saying` | I Am Not Saying | https://github.com/marlonbarrios/i_am_not_saying |
+| `alan-ai` | Alan-AI | https://github.com/marlonbarrios/alan-ai |
 | `semantic-tensegrities` | Semantic Tensegrities | https://semantic-tensegrities.vercel.app/ |
-| `elinmigrante` | El Inmigrante | https://elinmigrante.vercel.app/ |
+| `elinmigrante` | El Inmigrante | https://github.com/marlonbarrios/elinmigrante |
 | `decolonial-ai` | Decolonial AI | https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA |
-| `realtimetransformer` | RealTime Transformer | https://realtimetransformer-r267.vercel.app/ |
+| `realtimetransformer` | RealTime Transformer | https://github.com/marlonbarrios/realtimetransformer |
 | `can-you-help-me` | Can you help me? | https://github.com/marlonbarrios/can_you_help_me |
 
 ### No tag (playlist, album, portfolio, hubs, former Creative Code projects)
 
 | id | name | shortName | notes | url |
 |----|------|-----------|-------|-----|
-| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | `linkOnly`; links only to **unstable landscapes** | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
+| `dark-enlightenment-rave-playlist` | Dark Enlightenment Video Playlists | DE Video Playlists | `linkOnly`; links only to **unstable landscapes** | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
 | `digressions-latent-space-album` | Digressions in Latent Space (The Music Album) | Digressions in Latent Space | Bandcamp album | https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space |
 | `my-house-your-house` | My House is Your House | — | — | https://marlonbarrios.github.io/detroit/ |
 | `time-instances` | Time Instances | — | — | https://marlonbarrios.github.io/time_instances/ |
@@ -77,16 +83,20 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 | `pseudo-ouroboros` | Pseudo Ouroboros: The Genesis of Self Interest in Gradient Descent | Pseudo Ouroboros | — | https://marlonbarrios.github.io/pseudo_ouroboros/ |
 | `tonguezap` | TongueZap: The Hungry Chameleon Game | TongueZap | — | https://marlonbarrios.github.io/tonguezap/ |
 | `proteans-video` | Proteans | — | — | https://www.youtube.com/watch?v=iYiMgqiLDyU&t=122s |
-| `proteus-temporal` | Proteus: Trns Temporal Dating Portal | Proteus | `linkTo` → LLM tag | https://proteus-umber.vercel.app/ |
+| `proteus-temporal` | Proteus: Trns Temporal Dating Portal | Proteus | `linkTo` → Real Time LLMs tag | https://proteus-umber.vercel.app/ |
 | `rabbitholes-podcast` | rabbitHoles: Recursive Pathways to the Edges of Material Knowing and Back Speculative Podcast | rabbit holes | — | https://marlonbarrios.github.io/rabbitholes/ |
-| `my-portfolio` | My Portfolio | — | `linkOnly`; links only to hubs below | https://marlonbarrios.github.io/ |
+| `my-portfolio` | My Portfolio | — | `linkOnly`; links to **born in latent space**, **unstable landscapes**, **press and writings** | https://marlonbarrios.github.io/ |
+| `video-excerpt-born-in-latent-space` | Video Excerpt: Born in Latent Space | BILS Video Playlist | `linkOnly`; `linkTo` → born-in-latent-space only | https://www.youtube.com/watch?v=G-GjwEc1UDE |
 | `press-and-writings` | Press and Writings | — | `hubAll` | https://marlonbarrios.github.io/#recent-interviews-press-and-writings |
 | `born-in-latent-space` | born in latent space | — | `hubAll` | https://marlonbarrios.github.io/born_in_latent_space/ |
+| `unstable-landscapes-video-playlist` | UnstableLandscapes Video playlist | UL Video Playlist | `linkOnly`; `linkTo` → unstable-landscapes only | https://www.youtube.com/playlist?list=PLC2ijZ2U-avg3ZKExhzwRecHdgncsxdDl |
 | `unstable-landscapes` | unstable landscapes | — | `hubAll` | https://marlonbarrios.github.io/unstablelandscape/ |
+| `tectonics-of-otherness` | The Tectonics of Otherness | Tectonics of Otherness | — | https://marlonbarrios.github.io/tectonics_of-_otherness/ |
+| `video-playlists` | UnstableLandscapes | Video Playlists | `hubAll` (no `url`); `hubConnectOnlyPeers` → born, unstable; `hubLinkTo` → born, unstable + three video/playlist nodes; not linked to Press; four main hubs start clustered in the center in the UI | — |
 
 ---
 
 ## Summary
 
 - **4** tags  
-- **38** nodes (23 with a `tagId` + 15 without)
+- **42** nodes (23 with a `tagId` + 19 without)

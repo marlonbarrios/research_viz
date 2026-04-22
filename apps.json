@@ -1,9 +1,9 @@
 {
   "tags": [
-    { "id": "video-app", "name": "VIDEO_APP" },
+    { "id": "video-app", "name": "AI Videos Played on App" },
     { "id": "embodied-interaction", "name": "Embodied_Interaction" },
     { "id": "ai-realtime", "name": "Real time Visual AI" },
-    { "id": "llm", "name": "LLM" }
+    { "id": "llm", "name": "Real Time LLMs" }
   ],
   "nodes": [
     {
@@ -75,21 +75,21 @@
     {
       "id": "machine-forgetting",
       "name": "Machine Forgetting",
-      "url": "https://machine-forgetting-textvoice-gestur.vercel.app/",
+      "url": "https://github.com/marlonbarrios/machine_forgetting_textvoice_gesture_traccking",
       "tagId": "llm",
       "linkTo": ["embodied-interaction"]
     },
     {
       "id": "i-am-not-saying",
       "name": "I Am Not Saying",
-      "url": "https://i-am-not-saying.vercel.app/",
+      "url": "https://github.com/marlonbarrios/i_am_not_saying",
       "tagId": "llm",
       "linkTo": ["embodied-interaction"]
     },
     {
       "id": "alan-ai",
       "name": "Alan-AI",
-      "url": "https://alan-ai-one.vercel.app/",
+      "url": "https://github.com/marlonbarrios/alan-ai",
       "tagId": "llm"
     },
     {
@@ -99,9 +99,9 @@
       "hubAll": true
     },
     { "id": "semantic-tensegrities", "name": "Semantic Tensegrities", "url": "https://semantic-tensegrities.vercel.app/", "tagId": "llm" },
-    { "id": "elinmigrante", "name": "El Inmigrante", "url": "https://elinmigrante.vercel.app/", "tagId": "llm" },
+    { "id": "elinmigrante", "name": "El Inmigrante", "url": "https://github.com/marlonbarrios/elinmigrante", "tagId": "llm" },
     { "id": "decolonial-ai", "name": "Decolonial AI", "url": "https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA", "tagId": "llm" },
-    { "id": "realtimetransformer", "name": "RealTime Transformer", "url": "https://realtimetransformer-r267.vercel.app/", "tagId": "llm" },
+    { "id": "realtimetransformer", "name": "RealTime Transformer", "url": "https://github.com/marlonbarrios/realtimetransformer", "tagId": "llm" },
     {
       "id": "can-you-help-me",
       "name": "Can you help me?",
@@ -111,8 +111,8 @@
 
     {
       "id": "dark-enlightenment-rave-playlist",
-      "name": "Music Videos for Dark Enlightenment Rave",
-      "shortName": "Dark Enlightenment Rave",
+      "name": "Dark Enlightenment Video Playlists",
+      "shortName": "DE Video Playlists",
       "url": "https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3",
       "linkOnly": true,
       "linkTo": ["unstable-landscapes"]
@@ -131,7 +131,43 @@
       "linkOnly": true,
       "linkTo": ["born-in-latent-space", "unstable-landscapes", "press-and-writings"]
     },
+    {
+      "id": "video-excerpt-born-in-latent-space",
+      "name": "Video Excerpt: Born in Latent Space",
+      "shortName": "BILS Video Playlist",
+      "url": "https://www.youtube.com/watch?v=G-GjwEc1UDE",
+      "linkOnly": true,
+      "linkTo": ["born-in-latent-space"]
+    },
     { "id": "born-in-latent-space", "name": "born in latent space", "url": "https://marlonbarrios.github.io/born_in_latent_space/", "hubAll": true },
-    { "id": "unstable-landscapes", "name": "unstable landscapes", "url": "https://marlonbarrios.github.io/unstablelandscape/", "hubAll": true }
+    {
+      "id": "unstable-landscapes-video-playlist",
+      "name": "UnstableLandscapes Video playlist",
+      "shortName": "UL Video Playlist",
+      "url": "https://www.youtube.com/playlist?list=PLC2ijZ2U-avg3ZKExhzwRecHdgncsxdDl",
+      "linkOnly": true,
+      "linkTo": ["unstable-landscapes"]
+    },
+    { "id": "unstable-landscapes", "name": "unstable landscapes", "url": "https://marlonbarrios.github.io/unstablelandscape/", "hubAll": true },
+    {
+      "id": "tectonics-of-otherness",
+      "name": "The Tectonics of Otherness",
+      "shortName": "Tectonics of Otherness",
+      "url": "https://marlonbarrios.github.io/tectonics_of-_otherness/"
+    },
+    {
+      "id": "video-playlists",
+      "name": "UnstableLandscapes",
+      "shortName": "Video Playlists",
+      "hubAll": true,
+      "hubConnectOnlyPeers": ["born-in-latent-space", "unstable-landscapes"],
+      "hubLinkTo": [
+        "born-in-latent-space",
+        "unstable-landscapes",
+        "video-excerpt-born-in-latent-space",
+        "unstable-landscapes-video-playlist",
+        "dark-enlightenment-rave-playlist"
+      ]
+    }
   ]
 }

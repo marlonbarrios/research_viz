@@ -6,16 +6,16 @@ Generated from `apps.json`.
 
 | id | name |
 |----|------|
-| `video-app` | VIDEO_APP |
+| `video-app` | AI Videos Played on App |
 | `embodied-interaction` | Embodied_Interaction |
 | `ai-realtime` | Real time Visual AI |
-| `llm` | LLM |
+| `llm` | Real Time LLMs |
 
 ---
 
 ## Nodes by tag
 
-### VIDEO_APP (`video-app`)
+### AI Videos Played on App (`video-app`)
 
 | id | name | shortName | url |
 |----|------|-------------|-----|
@@ -45,17 +45,17 @@ Generated from `apps.json`.
 | `bauhaus-time-travelers` | Bauhaus Time Travelers Daydream | Bauhaus Time Travelers | https://bauhaus-time-travelers-daydream.vercel.app/ |
 | `looking-mr-parker` | Looking for Mr. Parker | — | https://lookingformrparker.vercel.app/ |
 
-### LLM (`llm`)
+### Real Time LLMs (`llm`)
 
 | id | name | url |
 |----|------|-----|
-| `machine-forgetting` | Machine Forgetting | https://machine-forgetting-textvoice-gestur.vercel.app/ |
-| `i-am-not-saying` | I Am Not Saying | https://i-am-not-saying.vercel.app/ |
-| `alan-ai` | Alan-AI | https://alan-ai-one.vercel.app/ |
+| `machine-forgetting` | Machine Forgetting | https://github.com/marlonbarrios/machine_forgetting_textvoice_gesture_traccking |
+| `i-am-not-saying` | I Am Not Saying | https://github.com/marlonbarrios/i_am_not_saying |
+| `alan-ai` | Alan-AI | https://github.com/marlonbarrios/alan-ai |
 | `semantic-tensegrities` | Semantic Tensegrities | https://semantic-tensegrities.vercel.app/ |
-| `elinmigrante` | El Inmigrante | https://elinmigrante.vercel.app/ |
+| `elinmigrante` | El Inmigrante | https://github.com/marlonbarrios/elinmigrante |
 | `decolonial-ai` | Decolonial AI | https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA |
-| `realtimetransformer` | RealTime Transformer | https://realtimetransformer-r267.vercel.app/ |
+| `realtimetransformer` | RealTime Transformer | https://github.com/marlonbarrios/realtimetransformer |
 | `can-you-help-me` | Can you help me? | https://github.com/marlonbarrios/can_you_help_me |
 
 ---
@@ -64,7 +64,7 @@ Generated from `apps.json`.
 
 | id | name | shortName | notes | url |
 |----|------|-------------|-------|-----|
-| `dark-enlightenment-rave-playlist` | Music Videos for Dark Enlightenment Rave | Dark Enlightenment Rave | `linkOnly`; `linkTo` → unstable-landscapes only | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
+| `dark-enlightenment-rave-playlist` | Dark Enlightenment Video Playlists | DE Video Playlists | `linkOnly`; `linkTo` → unstable-landscapes only | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
 | `digressions-latent-space-album` | Digressions in Latent Space (The Music Album) | Digressions in Latent Space | album | https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space |
 | `my-house-your-house` | My House is Your House | — | — | https://marlonbarrios.github.io/detroit/ |
 | `time-instances` | Time Instances | — | — | https://marlonbarrios.github.io/time_instances/ |
@@ -76,13 +76,17 @@ Generated from `apps.json`.
 | `proteus-temporal` | Proteus: Trns Temporal Dating Portal | Proteus | `linkTo` → `llm` | https://proteus-umber.vercel.app/ |
 | `rabbitholes-podcast` | rabbitHoles: Recursive Pathways to the Edges of Material Knowing and Back Speculative Podcast | rabbit holes | — | https://marlonbarrios.github.io/rabbitholes/ |
 | `my-portfolio` | My Portfolio | — | `linkOnly`; `linkTo` → born-in-latent-space, unstable-landscapes, press-and-writings | https://marlonbarrios.github.io/ |
+| `video-excerpt-born-in-latent-space` | Video Excerpt: Born in Latent Space | BILS Video Playlist | `linkOnly`; `linkTo` → `born-in-latent-space` only | https://www.youtube.com/watch?v=G-GjwEc1UDE |
 | `press-and-writings` | Press and Writings | — | `hubAll` | https://marlonbarrios.github.io/#recent-interviews-press-and-writings |
 | `born-in-latent-space` | born in latent space | — | `hubAll` | https://marlonbarrios.github.io/born_in_latent_space/ |
+| `unstable-landscapes-video-playlist` | UnstableLandscapes Video playlist | UL Video Playlist | `linkOnly`; `linkTo` → `unstable-landscapes` only | https://www.youtube.com/playlist?list=PLC2ijZ2U-avg3ZKExhzwRecHdgncsxdDl |
 | `unstable-landscapes` | unstable landscapes | — | `hubAll` | https://marlonbarrios.github.io/unstablelandscape/ |
+| `tectonics-of-otherness` | The Tectonics of Otherness | Tectonics of Otherness | — | https://marlonbarrios.github.io/tectonics_of-_otherness/ |
+| `video-playlists` | UnstableLandscapes | Video Playlists | `hubAll` (no `url`); `hubConnectOnlyPeers` → born, unstable; `hubLinkTo` → born, unstable + three clip nodes; not linked to Press; initial cluster with other main hubs in `index.html` | — |
 
 ---
 
 ## Counts
 
 - **Tags:** 4  
-- **Nodes:** 37 total (22 tagged + 15 without `tagId`)
+- **Nodes:** 42 total (23 tagged + 19 without `tagId`)

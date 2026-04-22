@@ -20,11 +20,12 @@
     :root {
       --bg: #141416;
       --panel: rgba(22, 22, 26, 0.9);
-      --text: #e8eaed;
-      --muted: #8b9099;
-      --link: rgba(210, 215, 222, 0.22);
-      --label-dim: rgba(232, 234, 237, 0.38);
-      --label-stroke: rgba(10, 10, 12, 0.92);
+      /* Dark mode: higher-contrast text and graph labels */
+      --text: #f1f4f8;
+      --muted: #b4bcc8;
+      --link: rgba(220, 225, 232, 0.28);
+      --label-dim: rgba(241, 244, 248, 0.78);
+      --label-stroke: rgba(8, 9, 12, 0.94);
       --link-related: rgba(228, 234, 245, 0.62);
       --node-app: #d8dee6;
       --node-app-hover: #ffffff;
@@ -219,8 +220,8 @@
       stroke: var(--stroke-tag);
     }
 
-    .cell:hover[data-kind="tag"] circle,
-    .cell:focus-within[data-kind="tag"] circle {
+    .cell:hover[data-has-url="true"][data-kind="tag"] circle,
+    .cell:focus-within[data-has-url="true"][data-kind="tag"] circle {
       fill: var(--node-tag-hover);
     }
 
@@ -229,8 +230,8 @@
       stroke: var(--stroke-anchor);
     }
 
-    .cell:hover[data-kind="anchor"]:not([data-hub-id]) circle,
-    .cell:focus-within[data-kind="anchor"]:not([data-hub-id]) circle {
+    .cell:hover[data-has-url="true"][data-kind="anchor"]:not([data-hub-id]) circle,
+    .cell:focus-within[data-has-url="true"][data-kind="anchor"]:not([data-hub-id]) circle {
       fill: var(--node-anchor-hover);
     }
 
@@ -240,23 +241,23 @@
       stroke-width: 1.65px;
     }
 
-    .cell:hover[data-kind="anchor"][data-hub-id] circle,
-    .cell:focus-within[data-kind="anchor"][data-hub-id] circle {
+    .cell:hover[data-has-url="true"][data-kind="anchor"][data-hub-id] circle,
+    .cell:focus-within[data-has-url="true"][data-kind="anchor"][data-hub-id] circle {
       fill: var(--node-hub-hover);
     }
 
-    .cell:hover[data-kind="app"] circle,
-    .cell:focus-within[data-kind="app"] circle {
+    .cell:hover[data-has-url="true"][data-kind="app"] circle,
+    .cell:focus-within[data-has-url="true"][data-kind="app"] circle {
       fill: var(--node-app-hover);
     }
 
-    .cell:hover[data-kind="video"] circle,
-    .cell:focus-within[data-kind="video"] circle {
+    .cell:hover[data-has-url="true"][data-kind="video"] circle,
+    .cell:focus-within[data-has-url="true"][data-kind="video"] circle {
       fill: var(--node-video-hover);
     }
 
-    .cell:hover[data-kind="repo"] circle,
-    .cell:focus-within[data-kind="repo"] circle {
+    .cell:hover[data-has-url="true"][data-kind="repo"] circle,
+    .cell:focus-within[data-has-url="true"][data-kind="repo"] circle {
       fill: var(--node-repo-hover);
     }
 
@@ -272,21 +273,21 @@
       stroke-width: 1.65px;
     }
 
-    .cell:hover[data-id="proteus-temporal"] circle,
-    .cell:focus-within[data-id="proteus-temporal"] circle,
-    .cell:hover[data-id="proteans-video"] circle,
-    .cell:focus-within[data-id="proteans-video"] circle {
+    .cell:hover[data-has-url="true"][data-id="proteus-temporal"] circle,
+    .cell:focus-within[data-has-url="true"][data-id="proteus-temporal"] circle,
+    .cell:hover[data-has-url="true"][data-id="proteans-video"] circle,
+    .cell:focus-within[data-has-url="true"][data-id="proteans-video"] circle {
       fill: var(--node-anchor-hover);
     }
 
-    .cell:hover[data-id="my-portfolio"] circle,
-    .cell:focus-within[data-id="my-portfolio"] circle {
+    .cell:hover[data-has-url="true"][data-id="my-portfolio"] circle,
+    .cell:focus-within[data-has-url="true"][data-id="my-portfolio"] circle {
       fill: var(--node-portfolio-hover);
     }
 
     .cell text {
       fill: var(--label-dim);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       paint-order: stroke fill;
       stroke: var(--label-stroke);
@@ -300,8 +301,8 @@
       opacity: 0;
     }
 
-    .cell:hover text,
-    .cell:focus-within text {
+    .cell:hover[data-has-url="true"] text,
+    .cell:focus-within[data-has-url="true"] text {
       fill: var(--text);
     }
 
@@ -331,7 +332,7 @@
 
     #hud h1 {
       margin: 0 0 6px;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.02em;
       line-height: 1.3;
@@ -340,7 +341,7 @@
 
     #hud .hud-updated {
       margin: 0 0 8px;
-      font-size: 11px;
+      font-size: 13px;
       line-height: 1.35;
       color: var(--muted);
       font-variant-numeric: tabular-nums;
@@ -348,7 +349,7 @@
 
     #hud p {
       margin: 0;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.45;
       color: var(--muted);
     }
@@ -359,7 +360,7 @@
 
     .load-status {
       margin: 0 0 8px;
-      font-size: 11px;
+      font-size: 13px;
       line-height: 1.4;
       color: #e8a598;
     }
@@ -379,7 +380,7 @@
       flex-direction: column;
       gap: 1px;
       margin-top: 5px;
-      font-size: 9px;
+      font-size: 11px;
       color: var(--muted);
     }
 
@@ -394,21 +395,36 @@
       gap: 6px;
       color: var(--text);
       font-weight: 600;
-      font-size: 9px;
+      font-size: 11px;
     }
 
     #motion-controls .slider-row label span.val {
       font-weight: 500;
       color: var(--muted);
       font-variant-numeric: tabular-nums;
-      font-size: 8px;
+      font-size: 10px;
     }
 
-    #motion-controls .slider-row input[type="range"] {
-      width: 100%;
-      max-width: 280px;
-      height: 14px;
+    #motion-controls .slider-row--toggle label {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #motion-controls .slider-row--toggle input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      flex-shrink: 0;
       accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    #motion-controls .slider-row--toggle input[type="checkbox"]:active {
+      transform: scale(0.92);
     }
 
     .theme-toggle {
@@ -465,7 +481,7 @@
 
     .key-hint {
       margin-top: 8px;
-      font-size: 11px;
+      font-size: 13px;
       line-height: 1.4;
       color: var(--muted);
     }
@@ -474,13 +490,14 @@
       display: inline-block;
       padding: 0.08em 0.35em;
       margin: 0 0.1em;
-      font-size: 10px;
+      font-size: 12px;
       font-family: ui-monospace, monospace;
       color: var(--text);
       background: var(--kbd-bg);
       border: 1px solid var(--kbd-border);
       border-radius: 4px;
     }
+
   </style>
 </head>
 <body>
@@ -490,13 +507,15 @@
       <p id="hud-updated" class="hud-updated" aria-live="polite"></p>
       <p id="load-status" class="load-status" role="status" aria-live="polite"></p>
       <p class="key-hint" id="key-hint" aria-live="polite">
-        <kbd>C</kbd> circles · <kbd>T</kbd> text · <kbd>L</kbd> links — toggles work after the graph loads (not while a slider is focused).
+        <kbd>C</kbd> circles · <kbd>T</kbd> text · <kbd>L</kbd> links — toggles work after the graph loads (not while the Lively control is focused).
       </p>
 
       <div id="motion-controls" hidden>
-        <div class="slider-row">
-          <label for="animate">Animate <span class="val" id="animate-val"></span></label>
-          <input type="range" id="animate" min="0" max="100" value="100" />
+        <div class="slider-row slider-row--toggle">
+          <label
+            for="animate"
+            title="Off: calmer floating. On: livelier motion with more space between nodes (not a tight clump)."
+            ><input type="checkbox" id="animate" /> Lively</label>
         </div>
       </div>
     </div>
@@ -536,27 +555,39 @@
         });
     })();
 
-    (function initThemeToggle() {
-      const btn = document.getElementById("theme-toggle");
-      if (!btn) return;
+    (function initTheme() {
       const key = "networkviz-theme";
-      function syncButton() {
-        const t = document.documentElement.getAttribute("data-theme") || "light";
-        const light = t === "light";
-        btn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
-        btn.setAttribute("title", light ? "Theme: light" : "Theme: dark");
+      const iconBtn = document.getElementById("theme-toggle");
+
+      function getTheme() {
+        return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
       }
-      btn.addEventListener("click", () => {
-        const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", next);
+
+      function setTheme(next) {
+        const t = next === "dark" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
         try {
-          localStorage.setItem(key, next);
+          localStorage.setItem(key, t);
         } catch (e) {
           /* ignore */
         }
-        syncButton();
-      });
-      syncButton();
+        syncIcon();
+      }
+
+      function syncIcon() {
+        const light = getTheme() === "light";
+        if (iconBtn) {
+          iconBtn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+          iconBtn.setAttribute("title", light ? "Theme: light" : "Theme: dark");
+        }
+      }
+
+      if (iconBtn) {
+        iconBtn.addEventListener("click", () => {
+          setTheme(getTheme() === "light" ? "dark" : "light");
+        });
+      }
+      syncIcon();
     })();
 
     function probeImage(src) {
@@ -587,6 +618,14 @@
       } catch {
         return "";
       }
+    }
+
+    /** Do not add same-host ring edges for this pair (youtube.com would otherwise connect Video Playlists to Proteans). */
+    function shouldSkipHostRingLink(aId, bId) {
+      if (!aId || !bId || aId === bId) return false;
+      const v = "video-playlists";
+      const p = "proteans-video";
+      return (aId === v && bId === p) || (aId === p && bId === v);
     }
 
     async function loadGraphData() {
@@ -624,6 +663,10 @@
             kind: d.hubAll ? "anchor" : inferKind(d.url),
             linkTo: Array.isArray(d.linkTo) ? d.linkTo.map((x) => String(x)) : [],
             linkOnly: Boolean(d.linkOnly),
+            hubLinkTo: Array.isArray(d.hubLinkTo) ? d.hubLinkTo.map((x) => String(x)) : [],
+            hubConnectOnlyPeers: Array.isArray(d.hubConnectOnlyPeers)
+              ? d.hubConnectOnlyPeers.map((x) => String(x))
+              : [],
           }));
         return [...tagNodes, ...leafNodes];
       }
@@ -643,6 +686,10 @@
           kind: d.hubAll ? "anchor" : inferKind(d.url),
           linkTo: Array.isArray(d.linkTo) ? d.linkTo.map((x) => String(x)) : [],
           linkOnly: Boolean(d.linkOnly),
+          hubLinkTo: Array.isArray(d.hubLinkTo) ? d.hubLinkTo.map((x) => String(x)) : [],
+          hubConnectOnlyPeers: Array.isArray(d.hubConnectOnlyPeers)
+            ? d.hubConnectOnlyPeers.map((x) => String(x))
+            : [],
         }));
     }
 
@@ -669,12 +716,28 @@
       const hubs = nodes.filter((d) => d.hubAll);
       if (!hubs.length) return;
       const others = nodes.filter((d) => !d.hubAll && !d.linkOnly);
+      const ids = new Set(nodes.map((n) => n.id));
       for (const h of hubs) {
-        for (const o of others) addLinkDeduped(links, seen, h.id, o.id);
+        const scoped = Array.isArray(h.hubLinkTo) && h.hubLinkTo.length > 0;
+        if (scoped) {
+          for (const tid of h.hubLinkTo) {
+            if (ids.has(tid)) addLinkDeduped(links, seen, h.id, tid);
+          }
+        } else {
+          for (const o of others) addLinkDeduped(links, seen, h.id, o.id);
+        }
       }
       for (let i = 0; i < hubs.length; i++) {
         for (let j = i + 1; j < hubs.length; j++) {
-          addLinkDeduped(links, seen, hubs[i].id, hubs[j].id);
+          const a = hubs[i];
+          const b = hubs[j];
+          if (Array.isArray(a.hubConnectOnlyPeers) && a.hubConnectOnlyPeers.length) {
+            if (!a.hubConnectOnlyPeers.includes(b.id)) continue;
+          }
+          if (Array.isArray(b.hubConnectOnlyPeers) && b.hubConnectOnlyPeers.length) {
+            if (!b.hubConnectOnlyPeers.includes(a.id)) continue;
+          }
+          addLinkDeduped(links, seen, a.id, b.id);
         }
       }
     }
@@ -698,7 +761,10 @@
       for (const [, arr] of byHost) {
         if (arr.length < 2) continue;
         for (let i = 0; i < arr.length; i++) {
-          addLinkDeduped(links, seen, arr[i].id, arr[(i + 1) % arr.length].id);
+          const a = arr[i].id;
+          const b = arr[(i + 1) % arr.length].id;
+          if (shouldSkipHostRingLink(a, b)) continue;
+          addLinkDeduped(links, seen, a, b);
         }
       }
       addExplicitLinkTos(nodes, links, seen);
@@ -771,7 +837,10 @@
       for (const [, arr] of byHost) {
         if (!hostKey(arr[0].url) || arr.length < 2) continue;
         for (let i = 0; i < arr.length; i++) {
-          addLinkDeduped(links, seen, arr[i].id, arr[(i + 1) % arr.length].id);
+          const a = arr[i].id;
+          const b = arr[(i + 1) % arr.length].id;
+          if (shouldSkipHostRingLink(a, b)) continue;
+          addLinkDeduped(links, seen, a, b);
         }
       }
 
@@ -793,6 +862,13 @@
       return 11.5;
     }
 
+    const PRIMARY_HUB_IDS = [
+      "press-and-writings",
+      "born-in-latent-space",
+      "unstable-landscapes",
+      "video-playlists",
+    ];
+
     function buildGraph(graphNodes) {
       const links = autoLinks(graphNodes);
       const degree = new Map(graphNodes.map((d) => [d.id, 0]));
@@ -803,6 +879,7 @@
         degree.set(t, (degree.get(t) || 0) + 1);
       }
 
+      const primarySet = new Set(PRIMARY_HUB_IDS);
       const nodes = graphNodes.map((d) => {
         const deg = degree.get(d.id) || 0;
         const br = baseRadius(d.kind);
@@ -811,7 +888,16 @@
         return { ...d, r };
       });
 
-      return { nodes, links };
+      const maxPrimaryR = Math.max(
+        0,
+        ...nodes.filter((n) => primarySet.has(n.id)).map((n) => n.r)
+      );
+      const withEqualPrimary =
+        maxPrimaryR > 0
+          ? nodes.map((n) => (primarySet.has(n.id) ? { ...n, r: maxPrimaryR } : n))
+          : nodes;
+
+      return { nodes: withEqualPrimary, links };
     }
 
     function run({ nodes, links }) {
@@ -855,7 +941,9 @@
         .attr("data-id", (d) => d.id)
         .attr("data-kind", (d) => d.kind)
         .attr("data-hub-id", (d) => (d.hubAll ? d.id : null))
-        .attr("tabindex", 0);
+        .attr("data-has-url", (d) => (d.url ? "true" : "false"))
+        .attr("tabindex", 0)
+        .style("cursor", (d) => (d.url ? "pointer" : "default"));
 
       nodeCell
         .append("circle")
@@ -874,7 +962,7 @@
         .text((d) => (d.shortName ? d.shortName : d.name))
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "alphabetic")
-        .attr("y", (d) => -d.r - 6);
+        .attr("y", (d) => -d.r - 7);
 
       nodeCell
         .on("click", (event, d) => {
@@ -957,22 +1045,113 @@
           }, 0);
         });
 
+      let isDragging = false;
+      let ambientAlphaTarget = 0;
+
+      function driftToAlphaTarget(v) {
+        if (v <= 0) return 0;
+        const t = v / 100;
+        return t ** 0.58 * 0.26;
+      }
+
+      /** Unchecked: calm drift, tighter springs (shape holds). Lively: weak springs + more repulsion = spread + visible motion, not a collapsed clump. */
+      const ANIMATE_SOFT_FLOAT = 20;
+      const ANIMATE_LIVELY = 90;
+
+      function elasticityToDecay(e) {
+        return 0.47 - (e / 100) * 0.34;
+      }
+
+      function elasticityToLinkStrength(e) {
+        return 0.11 + (e / 100) * 0.28;
+      }
+
+      function elasticityToLinkDistance(e) {
+        return 68 + (e / 100) * 24;
+      }
+
+      function elasticityToCharge(e) {
+        return -720 + (e / 100) * 200;
+      }
+
+      const FIXED_ELASTICITY = 0;
+      const PORTFOLIO_ID = "my-portfolio";
+      const PORTFOLIO_LINK_EXTRA = 48;
+      const PORTFOLIO_CHARGE_FACTOR = 1.28;
+      const PORTFOLIO_COLLIDE_EXTRA = 10;
+      /** Extra radius beyond n.r so nodes keep generous clearance (≈2×pad plus soft-mode bump). */
+      const NODE_COLLIDE_PAD = 30;
+      const VP_HUB_ID = "video-playlists";
+      const VP_CLIP_IDS = new Set([
+        "video-excerpt-born-in-latent-space",
+        "unstable-landscapes-video-playlist",
+        "dark-enlightenment-rave-playlist",
+      ]);
+      const CORE_HUB_IDS = new Set(PRIMARY_HUB_IDS);
+
+      function placeCoreHubsCluster() {
+        const cx = width() / 2;
+        const cy = height() / 2;
+        // Video Playlists on the network center; Press, Born, and Unstable on the same isosceles V (one scale `d`).
+        const d = 60;
+        const a = d * 0.7;
+        const yTop = cy - d * 0.48;
+        const yBot = cy + d * 0.55;
+        const pos = {
+          "video-playlists": { x: cx, y: cy },
+          "press-and-writings": { x: cx - a, y: yTop },
+          "born-in-latent-space": { x: cx + a, y: yTop },
+          "unstable-landscapes": { x: cx, y: yBot },
+        };
+        for (const n of nodes) {
+          if (!CORE_HUB_IDS.has(n.id) || !pos[n.id]) continue;
+          n.x = pos[n.id].x;
+          n.y = pos[n.id].y;
+          n.vx = 0;
+          n.vy = 0;
+        }
+      }
+
+      /** Lively: longer target edge lengths (more air between nodes). Toggled in applyMotionFromUi. */
+      let graphMotionLively = false;
+
+      function linkDistanceFor(link) {
+        const distScale = graphMotionLively ? 1.45 : 1.1;
+        const base = elasticityToLinkDistance(FIXED_ELASTICITY);
+        const s = typeof link.source === "object" && link.source != null ? link.source.id : link.source;
+        const t = typeof link.target === "object" && link.target != null ? link.target.id : link.target;
+        let d = base;
+        if (s === PORTFOLIO_ID || t === PORTFOLIO_ID) d = base + PORTFOLIO_LINK_EXTRA;
+        else if (CORE_HUB_IDS.has(s) && CORE_HUB_IDS.has(t) && s !== t) d = base * 0.56;
+        else if (s === VP_HUB_ID || t === VP_HUB_ID) {
+          const other = s === VP_HUB_ID ? t : s;
+          if (VP_CLIP_IDS.has(other)) d = base * 0.8;
+        }
+        return d * distScale;
+      }
+
+      function chargeStrengthFor(node) {
+        const base = elasticityToCharge(FIXED_ELASTICITY);
+        if (node && node.id === PORTFOLIO_ID) return base * PORTFOLIO_CHARGE_FACTOR;
+        return base;
+      }
+
       const linkForce = d3
         .forceLink(links)
         .id((d) => d.id)
-        .distance(60)
-        .strength(0.22);
+        .distance((d) => linkDistanceFor(d))
+        .strength(0.16);
 
       const simulation = d3
         .forceSimulation(nodes)
         .force("link", linkForce)
-        .force("charge", d3.forceManyBody().strength(-660))
+        .force("charge", d3.forceManyBody().strength((d) => chargeStrengthFor(d)))
         .force("center", d3.forceCenter(width() / 2, height() / 2))
         .force(
           "collide",
           d3
             .forceCollide()
-            .radius((d) => d.r + 12)
+            .radius((d) => d.r + NODE_COLLIDE_PAD + (d.id === PORTFOLIO_ID ? PORTFOLIO_COLLIDE_EXTRA : 0))
             .iterations(2)
         )
         .on("tick", () => {
@@ -985,55 +1164,47 @@
           nodeCell.attr("transform", (d) => `translate(${d.x},${d.y})`);
         });
 
-      let isDragging = false;
-      let ambientAlphaTarget = 0;
-
-      function driftToAlphaTarget(v) {
-        if (v <= 0) return 0;
-        const t = v / 100;
-        return t ** 0.58 * 0.26;
-      }
-
-      function elasticityToDecay(e) {
-        return 0.47 - (e / 100) * 0.34;
-      }
-
-      function elasticityToLinkStrength(e) {
-        return 0.11 + (e / 100) * 0.28;
-      }
-
-      function elasticityToLinkDistance(e) {
-        return 56 + (e / 100) * 22;
-      }
-
-      function elasticityToCharge(e) {
-        return -660 + (e / 100) * 200;
-      }
-
-      const FIXED_ELASTICITY = 0;
+      placeCoreHubsCluster();
+      simulation.alpha(0.55).restart();
 
       function applyMotionFromUi() {
-        const animate = +document.getElementById("animate").value;
-        ambientAlphaTarget = driftToAlphaTarget(animate);
-        simulation.velocityDecay(elasticityToDecay(FIXED_ELASTICITY));
-        linkForce.strength(elasticityToLinkStrength(FIXED_ELASTICITY));
-        linkForce.distance(elasticityToLinkDistance(FIXED_ELASTICITY));
-        simulation.force("charge", d3.forceManyBody().strength(elasticityToCharge(FIXED_ELASTICITY)));
-        const valEl = document.getElementById("animate-val");
-        if (valEl) valEl.textContent = animate === 0 ? "still" : `${animate}%`;
+        const lively = document.getElementById("animate").checked;
+        graphMotionLively = lively;
+        const level = lively ? ANIMATE_LIVELY : ANIMATE_SOFT_FLOAT;
+        ambientAlphaTarget = driftToAlphaTarget(level);
+        // Lively: *weaker* link pull (was collapsing the graph) + stronger many-body + longer edges + extra collide pad.
+        // Soft: a bit *stronger* links so the layout holds together with gentler heat.
+        simulation.velocityDecay(lively ? 0.4 : 0.5);
+        linkForce.strength(lively ? 0.08 : 0.15);
+        linkForce.distance((d) => linkDistanceFor(d));
+        simulation.force(
+          "charge",
+          d3.forceManyBody().strength((d) => {
+            const b = chargeStrengthFor(d);
+            return lively ? b * 1.34 : b * 1.06;
+          })
+        );
+        simulation.force(
+          "collide",
+          d3
+            .forceCollide()
+            .radius(
+              (d) =>
+                d.r +
+                NODE_COLLIDE_PAD +
+                (d.id === PORTFOLIO_ID ? PORTFOLIO_COLLIDE_EXTRA : 0) +
+                (lively ? 5 : 4)
+            )
+            .iterations(2)
+        );
         if (!isDragging) simulation.alphaTarget(ambientAlphaTarget);
-        if (animate <= 0) {
-          simulation.alphaTarget(0);
-          simulation.alpha(0);
-        } else {
-          const reheat = Math.min(1, 0.1 + ambientAlphaTarget * 18);
-          simulation.alpha(reheat).restart();
-        }
+        const reheat = Math.min(1, (lively ? 0.28 : 0.09) + ambientAlphaTarget * (lively ? 26 : 10));
+        simulation.alpha(reheat).restart();
       }
 
       const motionPanel = document.getElementById("motion-controls");
       motionPanel.hidden = false;
-      document.getElementById("animate").addEventListener("input", applyMotionFromUi);
+      document.getElementById("animate").addEventListener("change", applyMotionFromUi);
       applyMotionFromUi();
 
       const drag = d3
@@ -1063,7 +1234,8 @@
       function resize() {
         svg.attr("width", width()).attr("height", height());
         simulation.force("center", d3.forceCenter(width() / 2, height() / 2));
-        simulation.alpha(0.18).restart();
+        placeCoreHubsCluster();
+        simulation.alpha(0.2).restart();
       }
 
       resize();
@@ -1072,6 +1244,14 @@
       svg.call(zoom.transform, d3.zoomIdentity);
 
       const vizLayers = { circles: true, labels: true, links: true };
+
+      function placeNodeLabelsForCircleVisibility() {
+        const c = vizLayers.circles;
+        nodeCell
+          .select("text")
+          .attr("y", (d) => (c ? -d.r - 7 : 0))
+          .attr("dominant-baseline", c ? "alphabetic" : "middle");
+      }
 
       function isTypingTarget(el) {
         if (!el || !el.tagName) return false;
@@ -1091,6 +1271,7 @@
             vizLayers.labels
           )} · <kbd>L</kbd> links ${on(vizLayers.links)}`;
         }
+        placeNodeLabelsForCircleVisibility();
       }
 
       function onVizKeydown(e) {
