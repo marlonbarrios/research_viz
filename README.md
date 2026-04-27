@@ -43,20 +43,20 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 
 | id | name | url |
 |----|------|-----|
-| `canonical01` | Canonical01 | https://marlonbarrios.github.io/canonical01/ |
-| `what-is-hand` | What is Hand | https://marlonbarrios.github.io/ahandisfourrelationships/ |
-| `pulling-molecules` | Pulling Molecules | https://marlonbarrios.github.io/pulling-molecules/ |
-| `cyberblue` | Cyberblue | https://marlonbarrios.github.io/cyberblue/ |
-| `extraordinary-alien2` | Extraordinary Alien | https://marlonbarrios.github.io/extraordinary_alien2/ |
-| `instrumental-proximities` | Instrumental Proximities | https://marlonbarrios.github.io/instrumentalproximities/ |
-| `body-proximities` | Body Proximities | https://marlonbarrios.github.io/body_proximities/ |
-| `impossible-simplicity` | Impossible Simplicity | https://marlonbarrios.github.io/impossiblesimplicity/ |
+| `canonical01` | Canonical | https://github.com/marlonbarrios/canonical01 |
+| `what-is-hand` | What is Hand | https://github.com/marlonbarrios/ahandisfourrelationships |
+| `pulling-molecules` | Pulling Molecules | https://github.com/marlonbarrios/pulling-molecules |
+| `cyberblue` | Cyberblue | https://github.com/marlonbarrios/cyberblue |
+| `extraordinary-alien2` | Extraordinary Alien | https://github.com/marlonbarrios/extraordinary_alien2 |
+| `instrumental-proximities` | Instrumental Proximities | https://github.com/marlonbarrios/instrumentalproximities |
+| `body-proximities` | Body Proximities | https://github.com/marlonbarrios/body_proximities |
+| `impossible-simplicity` | Impossible Simplicity | https://github.com/marlonbarrios/impossiblesimplicity |
 
 ### Real time Visual AI
 
 | id | name | shortName | url |
 |----|------|-----------|-----|
-| `bauhaus-time-travelers` | Bauhaus Time Travelers Daydream | Bauhaus Time Travelers | https://bauhaus-time-travelers-daydream.vercel.app/ |
+| `bauhaus-time-travelers` | Bauhaus Time Travelers Daydream | Bauhaus Time Travelers | https://github.com/marlonbarrios/bauhaus_time_travelers_daydream |
 | `looking-mr-parker` | Looking for Mr. Parker | — | https://lookingformrparker.vercel.app/ |
 
 ### Real Time LLMs
@@ -66,9 +66,9 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 | `machine-forgetting` | Machine Forgetting | https://github.com/marlonbarrios/machine_forgetting_textvoice_gesture_traccking |
 | `i-am-not-saying` | I Am Not Saying | https://github.com/marlonbarrios/i_am_not_saying |
 | `alan-ai` | Alan-AI | https://github.com/marlonbarrios/alan-ai |
-| `semantic-tensegrities` | Semantic Tensegrities | https://semantic-tensegrities.vercel.app/ |
+| `semantic-tensegrities` | Semantic Tensegrities | https://github.com/marlonbarrios/semantic_tensegrities |
 | `elinmigrante` | El Inmigrante | https://github.com/marlonbarrios/elinmigrante |
-| `decolonial-ai` | Decolonial AI | https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA |
+| `decolonial-ai` | Decolonial AI | https://github.com/marlonbarrios/pangea-ia |
 | `realtimetransformer` | RealTime Transformer | https://github.com/marlonbarrios/realtimetransformer |
 | `can-you-help-me` | Can you help me? | https://github.com/marlonbarrios/can_you_help_me |
 
@@ -76,16 +76,16 @@ Data lives in **`apps.json`**. Optional **`shortName`** is what the graph draws 
 
 | id | name | shortName | notes | url |
 |----|------|-----------|-------|-----|
-| `dark-enlightenment-rave-playlist` | Dark Enlightenment Video Playlists | DE Video Playlists | `linkOnly`; links only to **unstable landscapes** | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
+| `dark-enlightenment-rave-playlist` | Dark Enlightenment Video Playlists | Dark Enlightenment Playlist | `linkOnly`; links only to **unstable landscapes** | https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3 |
 | `digressions-latent-space-album` | Digressions in Latent Space (The Music Album) | Digressions in Latent Space | Bandcamp album | https://marlonbarriossolano.bandcamp.com/album/digressions-in-latent-space |
-| `my-house-your-house` | My House is Your House | — | — | https://marlonbarrios.github.io/detroit/ |
+| `my-house-your-house` | My House is Your House | — | — | https://github.com/marlonbarrios/detroit |
 | `time-instances` | Time Instances | — | — | https://marlonbarrios.github.io/time_instances/ |
-| `brainfuck-swarm` | BrainFuck Swarm | — | — | https://marlonbarrios.github.io/brainfuck_swarm/ |
-| `tangerine-dreams` | Tangerine Dreams | — | — | https://marlonbarrios.github.io/tangerine_dreams2/ |
-| `pseudo-ouroboros` | Pseudo Ouroboros: The Genesis of Self Interest in Gradient Descent | Pseudo Ouroboros | — | https://marlonbarrios.github.io/pseudo_ouroboros/ |
-| `tonguezap` | TongueZap: The Hungry Chameleon Game | TongueZap | — | https://marlonbarrios.github.io/tonguezap/ |
+| `brainfuck-swarm` | BrainFuck Swarm | — | — | https://github.com/marlonbarrios/brainfuck_swarm |
+| `tangerine-dreams` | Tangerine Dreams | — | — | https://github.com/marlonbarrios/tangerine_dreams2/ |
+| `pseudo-ouroboros` | Pseudo Ouroboros: The Genesis of Self Interest in Gradient Descent | Pseudo Ouroboros | — | https://github.com/marlonbarrios/pseudo_ouroboros |
+| `tonguezap` | TongueZap: The Hungry Chameleon Game | TongueZap | — | https://github.com/marlonbarrios/tonguezap |
 | `proteans-video` | Proteans | — | — | https://www.youtube.com/watch?v=iYiMgqiLDyU&t=122s |
-| `proteus-temporal` | Proteus: Trns Temporal Dating Portal | Proteus | `linkTo` → Real Time LLMs tag | https://proteus-umber.vercel.app/ |
+| `proteus-temporal` | Proteus: Trans Temporal Dating Portal | Proteus | `linkTo` → Real Time LLMs tag | https://github.com/marlonbarrios/proteus |
 | `rabbitholes-podcast` | rabbitHoles: Recursive Pathways to the Edges of Material Knowing and Back Speculative Podcast | rabbit holes | — | https://marlonbarrios.github.io/rabbitholes/ |
 | `my-portfolio` | My Portfolio | — | `linkOnly`; links to **born in latent space**, **unstable landscapes**, **press and writings** | https://marlonbarrios.github.io/ |
 | `video-excerpt-born-in-latent-space` | Video Excerpt: Born in Latent Space | BILS Video Playlist | `linkOnly`; `linkTo` → born-in-latent-space only | https://www.youtube.com/watch?v=G-GjwEc1UDE |

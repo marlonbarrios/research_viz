@@ -18,51 +18,56 @@
     { "id": "god-mode-palantir", "name": "God Mode (Palantir)", "url": "https://marlonbarrios.github.io/god_mode_palantir/", "tagId": "video-app" },
     { "id": "barely-there", "name": "Barely There", "url": "https://marlonbarrios.github.io/barely_there/", "tagId": "video-app" },
 
-    { "id": "canonical01", "name": "Canonical01", "url": "https://marlonbarrios.github.io/canonical01/", "tagId": "embodied-interaction" },
-    { "id": "what-is-hand", "name": "What is Hand", "url": "https://marlonbarrios.github.io/ahandisfourrelationships/", "tagId": "embodied-interaction" },
-    { "id": "pulling-molecules", "name": "Pulling Molecules", "url": "https://marlonbarrios.github.io/pulling-molecules/", "tagId": "embodied-interaction" },
-    { "id": "cyberblue", "name": "Cyberblue", "url": "https://marlonbarrios.github.io/cyberblue/", "tagId": "embodied-interaction" },
+    {
+      "id": "canonical01",
+      "name": "Canonical",
+      "url": "https://github.com/marlonbarrios/canonical01",
+      "tagId": "embodied-interaction"
+    },
+    { "id": "what-is-hand", "name": "What is Hand", "url": "https://github.com/marlonbarrios/ahandisfourrelationships", "tagId": "embodied-interaction" },
+    { "id": "pulling-molecules", "name": "Pulling Molecules", "url": "https://github.com/marlonbarrios/pulling-molecules", "tagId": "embodied-interaction" },
+    { "id": "cyberblue", "name": "Cyberblue", "url": "https://github.com/marlonbarrios/cyberblue", "tagId": "embodied-interaction" },
     {
       "id": "extraordinary-alien2",
       "name": "Extraordinary Alien",
-      "url": "https://marlonbarrios.github.io/extraordinary_alien2/",
+      "url": "https://github.com/marlonbarrios/extraordinary_alien2",
       "tagId": "embodied-interaction"
     },
-    { "id": "instrumental-proximities", "name": "Instrumental Proximities", "url": "https://marlonbarrios.github.io/instrumentalproximities/", "tagId": "embodied-interaction" },
-    { "id": "body-proximities", "name": "Body Proximities", "url": "https://marlonbarrios.github.io/body_proximities/", "tagId": "embodied-interaction" },
-    { "id": "impossible-simplicity", "name": "Impossible Simplicity", "url": "https://marlonbarrios.github.io/impossiblesimplicity/", "tagId": "embodied-interaction" },
+    { "id": "instrumental-proximities", "name": "Instrumental Proximities", "url": "https://github.com/marlonbarrios/instrumentalproximities", "tagId": "embodied-interaction" },
+    { "id": "body-proximities", "name": "Body Proximities", "url": "https://github.com/marlonbarrios/body_proximities", "tagId": "embodied-interaction" },
+    { "id": "impossible-simplicity", "name": "Impossible Simplicity", "url": "https://github.com/marlonbarrios/impossiblesimplicity", "tagId": "embodied-interaction" },
 
     {
       "id": "bauhaus-time-travelers",
       "name": "Bauhaus Time Travelers Daydream",
       "shortName": "Bauhaus Time Travelers",
-      "url": "https://bauhaus-time-travelers-daydream.vercel.app/",
+      "url": "https://github.com/marlonbarrios/bauhaus_time_travelers_daydream",
       "tagId": "ai-realtime"
     },
     { "id": "looking-mr-parker", "name": "Looking for Mr. Parker", "url": "https://lookingformrparker.vercel.app/", "tagId": "ai-realtime" },
 
-    { "id": "my-house-your-house", "name": "My House is Your House", "url": "https://marlonbarrios.github.io/detroit/" },
+    { "id": "my-house-your-house", "name": "My House is Your House", "url": "https://github.com/marlonbarrios/detroit" },
     { "id": "time-instances", "name": "Time Instances", "url": "https://marlonbarrios.github.io/time_instances/" },
-    { "id": "brainfuck-swarm", "name": "BrainFuck Swarm", "url": "https://marlonbarrios.github.io/brainfuck_swarm/" },
-    { "id": "tangerine-dreams", "name": "Tangerine Dreams", "url": "https://marlonbarrios.github.io/tangerine_dreams2/" },
+    { "id": "brainfuck-swarm", "name": "BrainFuck Swarm", "url": "https://github.com/marlonbarrios/brainfuck_swarm" },
+    { "id": "tangerine-dreams", "name": "Tangerine Dreams", "url": "https://github.com/marlonbarrios/tangerine_dreams2/" },
     {
       "id": "pseudo-ouroboros",
       "name": "Pseudo Ouroboros: The Genesis of Self Interest in Gradient Descent",
       "shortName": "Pseudo Ouroboros",
-      "url": "https://marlonbarrios.github.io/pseudo_ouroboros/"
+      "url": "https://github.com/marlonbarrios/pseudo_ouroboros"
     },
     {
       "id": "tonguezap",
       "name": "TongueZap: The Hungry Chameleon Game",
       "shortName": "TongueZap",
-      "url": "https://marlonbarrios.github.io/tonguezap/"
+      "url": "https://github.com/marlonbarrios/tonguezap"
     },
     { "id": "proteans-video", "name": "Proteans", "url": "https://www.youtube.com/watch?v=iYiMgqiLDyU&t=122s" },
     {
       "id": "proteus-temporal",
-      "name": "Proteus: Trns Temporal Dating Portal",
+      "name": "Proteus: Trans Temporal Dating Portal",
       "shortName": "Proteus",
-      "url": "https://proteus-umber.vercel.app/",
+      "url": "https://github.com/marlonbarrios/proteus",
       "linkTo": ["llm"]
     },
     {
@@ -98,9 +103,9 @@
       "url": "https://marlonbarrios.github.io/#recent-interviews-press-and-writings",
       "hubAll": true
     },
-    { "id": "semantic-tensegrities", "name": "Semantic Tensegrities", "url": "https://semantic-tensegrities.vercel.app/", "tagId": "llm" },
+    { "id": "semantic-tensegrities", "name": "Semantic Tensegrities", "url": "https://github.com/marlonbarrios/semantic_tensegrities", "tagId": "llm" },
     { "id": "elinmigrante", "name": "El Inmigrante", "url": "https://github.com/marlonbarrios/elinmigrante", "tagId": "llm" },
-    { "id": "decolonial-ai", "name": "Decolonial AI", "url": "https://pangeaia-2.vercel.app/?agentConfig=Pangea_IA", "tagId": "llm" },
+    { "id": "decolonial-ai", "name": "Decolonial AI", "url": "https://github.com/marlonbarrios/pangea-ia", "tagId": "llm" },
     { "id": "realtimetransformer", "name": "RealTime Transformer", "url": "https://github.com/marlonbarrios/realtimetransformer", "tagId": "llm" },
     {
       "id": "can-you-help-me",
@@ -112,7 +117,7 @@
     {
       "id": "dark-enlightenment-rave-playlist",
       "name": "Dark Enlightenment Video Playlists",
-      "shortName": "DE Video Playlists",
+      "shortName": "Dark Enlightenment Playlist",
       "url": "https://www.youtube.com/watch?v=gTnYNPA-55o&list=PLC2ijZ2U-avi_CB1NQFV6og2eg7ZTpWo3",
       "linkOnly": true,
       "linkTo": ["unstable-landscapes"]
