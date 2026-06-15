@@ -36,6 +36,7 @@
     { "id": "instrumental-proximities", "name": "Instrumental Proximities", "url": "https://github.com/marlonbarrios/instrumentalproximities", "tagId": "embodied-interaction" },
     { "id": "body-proximities", "name": "Body Proximities", "url": "https://github.com/marlonbarrios/body_proximities", "tagId": "embodied-interaction" },
     { "id": "impossible-simplicity", "name": "Impossible Simplicity", "url": "https://github.com/marlonbarrios/impossiblesimplicity", "tagId": "embodied-interaction" },
+    { "id": "spread-your-wings", "name": "Wingspan", "url": "https://github.com/marlonbarrios/spread_your_wings", "tagId": "embodied-interaction" },
 
     {
       "id": "bauhaus-time-travelers",
@@ -45,6 +46,12 @@
       "tagId": "ai-realtime"
     },
     { "id": "looking-mr-parker", "name": "Looking for Mr. Parker", "url": "https://lookingformrparker.vercel.app/", "tagId": "ai-realtime" },
+    {
+      "id": "in-pursuit-stolen-ghosts",
+      "name": "In Pursuit of Stolen Ghosts",
+      "url": "https://github.com/marlonbarrios/in_pursuit_of-stolen_ghosts_May_2026",
+      "tagId": "ai-realtime"
+    },
 
     { "id": "my-house-your-house", "name": "My House is Your House", "url": "https://github.com/marlonbarrios/detroit" },
     { "id": "time-instances", "name": "Time Instances", "url": "https://marlonbarrios.github.io/time_instances/" },

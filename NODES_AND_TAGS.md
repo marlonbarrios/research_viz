@@ -37,6 +37,7 @@ Generated from `apps.json`.
 | `instrumental-proximities` | Instrumental Proximities | https://github.com/marlonbarrios/instrumentalproximities |
 | `body-proximities` | Body Proximities | https://github.com/marlonbarrios/body_proximities |
 | `impossible-simplicity` | Impossible Simplicity | https://github.com/marlonbarrios/impossiblesimplicity |
+| `spread-your-wings` | Wingspan | https://github.com/marlonbarrios/spread_your_wings |
 
 ### Real time Visual AI (`ai-realtime`)
 
@@ -44,6 +45,7 @@ Generated from `apps.json`.
 |----|------|-------------|-----|
 | `bauhaus-time-travelers` | Bauhaus Time Travelers Daydream | Bauhaus Time Travelers | https://github.com/marlonbarrios/bauhaus_time_travelers_daydream |
 | `looking-mr-parker` | Looking for Mr. Parker | — | https://lookingformrparker.vercel.app/ |
+| `in-pursuit-stolen-ghosts` | In Pursuit of Stolen Ghosts | — | https://github.com/marlonbarrios/in_pursuit_of-stolen_ghosts_May_2026 |
 
 ### Real Time LLMs (`llm`)
 
